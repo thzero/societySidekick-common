@@ -6,9 +6,9 @@ import DecimalUtility from '../../../utility/decimal';
 
 import NotImplementedError from '@thzero/library_common/errors/notImplemented';
 
-import Service from '@thzero/library/service/index';
+import BaseGameSystemsService from '../../../gameSystems/service/index';
 
-class BaseRulesGamesSystemService extends Service {
+class BaseRulesGamesSystemService extends BaseGameSystemsService {
 	async init(injector) {
 		await super.init(injector);
 

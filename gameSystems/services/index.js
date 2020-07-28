@@ -5,9 +5,9 @@ import Utility from '@thzero/library_common/utility';
 
 import NotImplementedError from '@thzero/library_common/errors/notImplemented';
 
-import Service from '@thzero/library/service/index';
+import BaseGameSystemsService from '../../../gameSystems/service/index';
 
-class BaseGameSystemService extends Service {
+class BaseGameSystemService extends BaseGameSystemsService {
 	constructor(il8n) {
 		super();
 
