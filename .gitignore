@@ -23,7 +23,3 @@ firebase-debug.log*
 *.sw?
 
 !.vscode/launch.json
-
-/config/development.json
-/config/productionManual.json
-/config/serviceAccountKey.json
