@@ -1,9 +1,9 @@
 import SharedConstants from '../../../constants';
 import Starfinder1eSharedConstants from '../constants';
 
-import BaseRulesGamesSystemService from '../../services/baseRules';
+import BaseRulesGamesSystemsService from '../../services/baseRules';
 
-class Starfinder1eRulesGamesSystemService extends BaseRulesGamesSystemService {
+class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService {
 	static CurrencyFixed = 2;
 
 	async calculateCharacterAdditional(character) {
@@ -119,12 +119,12 @@ class Starfinder1eRulesGamesSystemService extends BaseRulesGamesSystemService {
 	}
 
 	_decimalFixed() {
-		return Starfinder1eRulesGamesSystemService.CurrencyFixed;
+		return Starfinder1eRulesGamesSystemsService.CurrencyFixed;
 	}
 
 	_decimalCurrencyFixed() {
-		return Starfinder1eRulesGamesSystemService.CurrencyFixed;
+		return Starfinder1eRulesGamesSystemsService.CurrencyFixed;
 	}
 }
 
-export default Starfinder1eRulesGamesSystemService;
+export default Starfinder1eRulesGamesSystemsService;

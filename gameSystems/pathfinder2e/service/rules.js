@@ -3,9 +3,9 @@ import Pathfinder2eSharedConstants from '../constants';
 
 import SettingsGameSystem from '../../../data/settingsGameSystem';
 
-import BaseRulesGamesSystemService from '../../services/baseRules';
+import BaseRulesGamesSystemsService from '../../services/baseRules';
 
-class Pathfinder2eRulesGamesSystemService extends BaseRulesGamesSystemService {
+class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService {
 	static GoldFixed = 2;
 
 	async calculateCharacterAdditional(character, user) {
@@ -232,12 +232,12 @@ class Pathfinder2eRulesGamesSystemService extends BaseRulesGamesSystemService {
 	}
 
 	_decimalFixed() {
-		return Pathfinder2eRulesGamesSystemService.GoldFixed;
+		return Pathfinder2eRulesGamesSystemsService.GoldFixed;
 	}
 
 	_decimalCurrencyFixed() {
-		return Pathfinder2eRulesGamesSystemService.GoldFixed;
+		return Pathfinder2eRulesGamesSystemsService.GoldFixed;
 	}
 }
 
-export default Pathfinder2eRulesGamesSystemService;
+export default Pathfinder2eRulesGamesSystemsService;

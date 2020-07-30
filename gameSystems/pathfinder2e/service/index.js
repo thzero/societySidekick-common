@@ -4,12 +4,12 @@ import Pathfinder2eSharedConstants from '../constants';
 
 import Utility from '@thzero/library_common/utility';
 
-import BaseGamesSystemService from '../../services/index';
+import BaseGameSystemGamesSystemsService from '../../services/index';
 
 import CharacterBoon from '../data/characterBoon';
 import CharacterScenario from '../data/characterScenario';
 
-class Pathfinder2eGamesSystemService extends BaseGamesSystemService {
+class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsService {
 	constructor() {
 		super(SharedConstants.GameSystems.Pathfinder2e.friendlyId);
 	}
@@ -193,4 +193,4 @@ class Pathfinder2eGamesSystemService extends BaseGamesSystemService {
 	}
 }
 
-export default Pathfinder2eGamesSystemService;
+export default Pathfinder2eGameSystemGamesSystemsService;
