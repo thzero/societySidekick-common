@@ -1,7 +1,7 @@
 import SharedConstants from '../../../constants';
 import Pathfinder2eSharedConstants from '../constants';
 
-import DecimalUtility from '../../../../utility/decimal';
+import DecimalUtility from '../../../utility/decimal';
 
 import CharacterData from '../../../data/character';
 import Pathfinder2eCharacterScenario from './characterScenario';
