@@ -13,7 +13,6 @@ class EquipmentData extends GameSystemData {
 		if (!requested)
 			return;
 
-		this.repeatable = requested.repeatable;
 		this.scenario = requested.scenario;
 		this.season = requested.season;
 		this.type = requested.type;
