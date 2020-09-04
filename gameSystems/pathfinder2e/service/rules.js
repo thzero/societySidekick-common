@@ -150,14 +150,16 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 			return 0;
 
 		let value = 0;
-		if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+			value = 0;
+		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
+		value = 24;
+	else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+			value = 0;
+		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 2;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 8;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
-			value = 0;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
-			value = 24;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
 			value = 0;
 
@@ -237,6 +239,27 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		// 	value = value / 2
 
 		return value;
+	}
+
+	isAdventureScenario(scenario) {
+		if (!scenario)
+			return false;
+
+		return scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO;
+	}
+
+	isAchievementPointsEarnedReadOnly(scenario) {
+		if (!scenario)
+			return false;
+
+		return scenario.scenarioAdventure !== Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE;
+	}
+
+	isDowntimePointsReadOnly(scenario) {
+		if (!scenario)
+			return false;
+
+		return scenario.scenarioAdventure !== Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE;
 	}
 
 	_decimalFixed() {

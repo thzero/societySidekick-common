@@ -47,10 +47,11 @@ const Constants = {
 		SLOW: 'slow'
 	},
 	ScenarioAdventures: {
-		QUEST: 'quest',
-		SCENARIO: 'scenario',
 		ADVENTURE: 'adventure',
 		ADVENTURE_PATH: 'adventurePath',
+		MODULE: 'module',
+		QUEST: 'quest',
+		SCENARIO: 'scenario',
 		INITIAL: 'initial'
 	},
 	ScenarionInitialId: '8BZtABADxeJeXZj7H5Es4f'

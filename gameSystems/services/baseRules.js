@@ -225,6 +225,11 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		return DecimalUtility.clean(value, this._decimalFixed());
 	}
 
+	// eslint-disable-next-line
+	isAdventureScenario(scenario) {
+		return false;
+	}
+
 	_decimalFixed() {
 		return 2;
 	}

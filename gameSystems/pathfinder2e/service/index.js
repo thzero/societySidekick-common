@@ -105,13 +105,6 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return this._initializeLookups(injector, 'pathfinder2e');
 	}
 
-	isAdventureScenario(value) {
-		if (!value)
-			return false;
-
-		return value.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO;
-	}
-
 	scenarioLookupAdvancementSpeedName(id, lookups) {
 		if (!lookups)
 			return '';
@@ -134,16 +127,20 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		if (!item || !item.type)
 			return '';
 
-		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST.toLowerCase()) {
+		if (
+				(item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE.toLowerCase()) ||
+				(item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE.toLowerCase())
+			) {
+			return item.name;
+		}
+
+		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH.toLowerCase()) {
 			if (item.scenario)
 				return '#' + item.scenario + ' ' + item.name;
 			return item.name;
 		}
 
-		if (
-				(item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE.toLowerCase()) ||
-				(item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH.toLowerCase())
-			) {
+		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST.toLowerCase()) {
 			if (item.scenario)
 				return '#' + item.scenario + ' ' + item.name;
 			return item.name;

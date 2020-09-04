@@ -58,10 +58,11 @@ const Constants = {
 		SLOW: 'slow'
 	},
 	ScenarioAdventures: {
-		QUEST: 'quest',
-		SCENARIO: 'scenario',
 		ADVENTURE: 'adventure',
 		ADVENTURE_PATH: 'adventurePath',
+		MODULE: 'module',
+		QUEST: 'quest',
+		SCENARIO: 'scenario',
 		ACHIEVEMENT_POINTS: 'achievementPoints',
 		INITIAL: 'initial'
 	},
@@ -75,6 +76,114 @@ const Constants = {
 };
 
 Constants.AdvancementPoints = [
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.MODULE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.MODULE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.MODULE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.MODULE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.MODULE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 0
+	},
+	{
+		adventure: Constants.ScenarioAdventures.MODULE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 0
+	},
 	{
 		adventure: Constants.ScenarioAdventures.QUEST,
 		participant: SharedConstants.ScenarioParticipants.PLAYER,
@@ -143,78 +252,6 @@ Constants.AdvancementPoints = [
 	},
 	{
 		adventure: Constants.ScenarioAdventures.SCENARIO,
-		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
-		event: Constants.ScenarioEvents.PREMIER_PLUS,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE,
-		participant: SharedConstants.ScenarioParticipants.PLAYER,
-		event: Constants.ScenarioEvents.STANDARD,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE,
-		participant: SharedConstants.ScenarioParticipants.PLAYER,
-		event: Constants.ScenarioEvents.PREMIER,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE,
-		participant: SharedConstants.ScenarioParticipants.PLAYER,
-		event: Constants.ScenarioEvents.PREMIER_PLUS,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE,
-		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
-		event: Constants.ScenarioEvents.STANDARD,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE,
-		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
-		event: Constants.ScenarioEvents.PREMIER,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE,
-		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
-		event: Constants.ScenarioEvents.PREMIER_PLUS,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
-		participant: SharedConstants.ScenarioParticipants.PLAYER,
-		event: Constants.ScenarioEvents.STANDARD,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
-		participant: SharedConstants.ScenarioParticipants.PLAYER,
-		event: Constants.ScenarioEvents.PREMIER,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
-		participant: SharedConstants.ScenarioParticipants.PLAYER,
-		event: Constants.ScenarioEvents.PREMIER_PLUS,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
-		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
-		event: Constants.ScenarioEvents.STANDARD,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
-		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
-		event: Constants.ScenarioEvents.PREMIER,
-		earned: 12
-	},
-	{
-		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
 		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
 		event: Constants.ScenarioEvents.PREMIER_PLUS,
 		earned: 12
