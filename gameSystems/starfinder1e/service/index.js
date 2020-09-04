@@ -86,13 +86,6 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return this._initializeLookups(injector, 'starfinder1e');
 	}
 
-	isAdventureScenario(value) {
-		if (!value)
-			return false;
-
-		return value.scenarioAdventure === Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO;
-	}
-
 	scenarioLookupAdvancementSpeedName(id, lookups) {
 		if (!lookups)
 			return '';

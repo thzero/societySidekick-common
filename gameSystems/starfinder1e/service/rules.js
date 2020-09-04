@@ -114,6 +114,13 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return 1 + level;
 	}
 
+	isAdventureScenario(value) {
+		if (!value)
+			return false;
+
+		return value.scenarioAdventure === Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO;
+	}
+
 	// eslint-disable-next-line
 	calculateScenario(scenario) {
 	}
