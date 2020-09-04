@@ -241,18 +241,24 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return value;
 	}
 
-	isAdventureScenario(scenario) {
-		if (!scenario)
-			return false;
-
-		return scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO;
-	}
-
 	isAchievementPointsEarnedReadOnly(scenario) {
 		if (!scenario)
 			return false;
 
-		return scenario.scenarioAdventure !== Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE;
+		return !(
+			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE) ||
+			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+		);
+	}
+
+	isAdventureScenario(scenario) {
+		if (!scenario)
+			return false;
+
+		return !(
+			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE) ||
+			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+		);
 	}
 
 	isDowntimePointsReadOnly(scenario) {
