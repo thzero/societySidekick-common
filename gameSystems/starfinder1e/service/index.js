@@ -102,17 +102,28 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		if (!item || !item.type)
 			return '';
 
-		if (item.type.toLowerCase() === Starfinder1eSharedConstants.ScenarioAdventures.QUEST.toLowerCase())
-			return '#' + item.scenario + ' ' + item.name;
-
-		if (item.type.toLowerCase() === Starfinder1eSharedConstants.ScenarioAdventures.ADVENTURE_PATH.toLowerCase()) {
+		if (item.type.toLowerCase() === Starfinder1eSharedConstants.ScenarioAdventures.QUEST.toLowerCase()) {
 			if (item.scenario)
 				return '#' + item.scenario + ' ' + item.name;
 			return item.name;
 		}
 
-		if (item.type.toLowerCase() === Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO.toLowerCase())
-			return '#' + item.season + '-' + item.scenario + ' ' + item.name;
+		if (
+				(item.type.toLowerCase() === Starfinder1eSharedConstants.ScenarioAdventures.ADVENTURE.toLowerCase()) ||
+				(item.type.toLowerCase() === Starfinder1eSharedConstants.ScenarioAdventures.ADVENTURE_PATH.toLowerCase())
+			) {
+			if (item.scenario)
+				return '#' + item.scenario + ' ' + item.name;
+			return item.name;
+		}
+
+		if (item.type.toLowerCase() === Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO.toLowerCase()) {
+			if (item.season && item.scenario)
+				return '#' + (item.season ? item.season : '') + '-' + (item.scenario ? item.scenario : '') + ' ' + item.name;
+			if (!item.season && item.scenario)
+				return '#' + item.scenario + ' ' + item.name;
+			return item.name;
+		}
 
 		return item.name;
 	}

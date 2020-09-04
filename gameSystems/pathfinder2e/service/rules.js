@@ -154,6 +154,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 			value = 2;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 8;
+		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+			value = 0;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 24;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
@@ -174,6 +176,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 			value = 1;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
+		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+			value = 0;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 12;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
@@ -196,6 +200,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 			value = 1;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
+		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+			value = 0;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 12;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
@@ -218,6 +224,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 			value = 1;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
+		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+			value = 0;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 12;
 		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)

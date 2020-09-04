@@ -1,85 +1,224 @@
+import SharedConstants from '../../constants';
+
 const Constants = {
-	CharactersStatus: {
-		ACTIVE: 'active',
-		DEAD: 'dead',
-		RETIRED: 'retired'
+	BoonTypes: {
+		ALLY: 'ally',
+		ADVANCED: 'advanced',
+		DOWNTIME: 'downtime',
+		FACTION: 'faction',
+		GENERAL: 'general',
+		HEROIC: 'heroic',
+		ITEM: 'item',
+		MENTOR: 'mentor',
+		NONE: 'none',
+		PROMOTIONAL: 'promotional',
+		PROPERTY: 'property',
+		SERVICE: 'service',
+		SOCIAL: 'social',
+		SLOTLESS: 'slotless',
+		TRIGGER: 'trigger'
 	},
-	ErrorCodes: {
-		Characters: {
-			InvalidStatus: 'characters.invalidStatus'
-		},
-		DuplicateGamerTag: 'duplicateGamerTag',
-		DuplicateName: 'duplicateName',
-		DuplicateNumber: 'duplicateNumber',
-		DuplicateOrder: 'duplicateOrder',
-		InvalidObject: 'invalidObject',
-		InvalidPermissions: 'invalidPermissions',
-		ObjectChanged: 'objectChanged',
-		QuotaReached: 'quotaExceeded'
+	ClassTypes: {
+		ARCHETYPE: 'archetype',
+		CLASS: 'class'
 	},
-	ErrorFields: {
-		Generic: 'generic',
-		Name: 'name',
-		Number: 'number',
-		Order: 'order'
+	EquipmentCategories: {
+		ADVENTURING_GEAR: 'adventuring_gear',
+		AMMUNITION: 'ammunition',
+		ARMOR: 'armor',
+		DRUG: 'drug',
+		RUNE: 'rune',
+		SHIELD: 'shield',
+		SNARE: 'snare',
+		STAVE: 'stave',
+		STRUCTURE: 'structure',
+		TATTOO: 'tattoo',
+		WEAPON: 'weapon'
 	},
-	GameSystems: {
-		DungeonsAndDragons5e: {
-			id: 'dtVMQdxpXTExB2udEmV11K', // '6f148c32-a68c-4f8f-803b-857f0ab48134',
-			friendlyId: 'dungeonsanddragons5e'
-		},
-		Pathfinder2e:
-		{
-			id: 'nFxpKVcCusf4qztVj9CpT5', // 'df6bca9b-4347-45e3-951b-0145eb458ace',
-			friendlyId: 'pathfinder2e'
-		},
-		Starfinder1e:
-		{
-			id: 'hZZ8KYnj5gzbFSRC4yb4PE',
-			friendlyId: 'starfinder1e'
-		}
+	EquipmentSecondaryCategories: {
+		ARMOR: 'armor',
+		HEAVY: 'heavy',
+		HELD_ITEM: 'held_item',
+		LIGHT: 'light',
+		MEDIUM: 'medium',
+		MELEE: 'melee',
+		RANGED: 'ranged',
+		UNARMORED: 'unarmored',
+		WEAPON: 'weapon'
 	},
-	NewsTypes: {
-		ADMIN: 'admin',
-		MAIN: 'main'
+	EquipmentTertiaryCategories: {
+		ADVANCED: 'advanced',
+		MARTIAL: 'martial',
+		SIMPLE: 'simple',
+		UNARMED: 'unarmed'
 	},
-	Roles: {
-		Admin: 'admin',
-		User: 'user'
-	},
-	ScenarioParticipants: {
+	ScenarioAdvancementSpeeds: {
 		INITIAL: 'initial',
-		PLAYER: 'player',
-		GAMEMASTER: 'gamemaster'
+		STANDARD: 'standard',
+		SLOW: 'slow'
 	},
-	ScenarioStatus: {
-		INITIAL: 'initial',
-		IGNORE: 'ignore',
-		REPEATED: 'repeated',
-		REPLAY: 'replay'
-	},
-	ScenarioTypes: {
+	ScenarioAdventures: {
+		QUEST: 'quest',
+		SCENARIO: 'scenario',
+		ADVENTURE: 'adventure',
+		ADVENTURE_PATH: 'adventurePath',
+		ACHIEVEMENT_POINTS: 'achievementPoints',
 		INITIAL: 'initial'
 	},
-	SortBy: {
-		Characters: {
-			CharacterName: 'characterName',
-			Level: 'characterLevel'
-		},
-		Boons: {
-			BoonName: 'boonName'
-		},
-		Scenarios: {
-			CharacterName: 'characterName',
-			DatePlayed: 'datePlayed',
-			ScenarioName: 'scenarioName',
-			ScenarioNumber: 'scenarioNumber',
-			Season: 'season'
-		}
+	ScenarioEvents: {
+		INITIAL: 'initial',
+		STANDARD: 'standard',
+		PREMIER: 'premier',
+		PREMIER_PLUS: 'premierPlus'
 	},
-	Status: {
-		ACTIVE: 'active'
-	}
+	ScenarionInitialId: 'ciHt2sZZFDtRuaq1YDzkiy'
 };
+
+Constants.AdvancementPoints = [
+	{
+		adventure: Constants.ScenarioAdventures.QUEST,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 1
+	},
+	{
+		adventure: Constants.ScenarioAdventures.QUEST,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 1
+	},
+	{
+		adventure: Constants.ScenarioAdventures.QUEST,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 1.5
+	},
+	{
+		adventure: Constants.ScenarioAdventures.QUEST,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 2
+	},
+	{
+		adventure: Constants.ScenarioAdventures.QUEST,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 2
+	},
+	{
+		adventure: Constants.ScenarioAdventures.QUEST,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 3
+	},
+	{
+		adventure: Constants.ScenarioAdventures.SCENARIO,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 4
+	},
+	{
+		adventure: Constants.ScenarioAdventures.SCENARIO,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 5
+	},
+	{
+		adventure: Constants.ScenarioAdventures.SCENARIO,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 6
+	},
+	{
+		adventure: Constants.ScenarioAdventures.SCENARIO,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 8
+	},
+	{
+		adventure: Constants.ScenarioAdventures.SCENARIO,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 10
+	},
+	{
+		adventure: Constants.ScenarioAdventures.SCENARIO,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 12
+	},,
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 12
+	},
+	{
+		adventure: Constants.ScenarioAdventures.ADVENTURE_PATH,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 12
+	}
+];
 
 export default Constants;
