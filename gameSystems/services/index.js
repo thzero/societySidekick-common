@@ -248,12 +248,10 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!injector || !lookups || !key)
 			return null;
 
-		const service = injector.getService(Constants.InjectorKeys.SERVICE_CHARACTERS);
-
-		lookups.characterStatus = service._translateName(SharedConstants.CharactersStatus, 'characters.gameSystems', key + '.status');
-		lookups.scenarioParticipants = service._translateName(SharedConstants.ScenarioParticipants, 'characters.gameSystems', key + '.scenarios.participants');
+		lookups.characterStatus = this._translateName(SharedConstants.CharactersStatus, 'characters.gameSystems', key + '.status');
+		lookups.scenarioParticipants = this._translateName(SharedConstants.ScenarioParticipants, 'characters.gameSystems', key + '.scenarios.participants');
 		lookups.scenarioParticipants = lookups.scenarioParticipants.filter(l => l.id !== SharedConstants.ScenarioParticipants.INITIAL);
-		lookups.scenarioStatus = service._translateName(SharedConstants.ScenarioStatus, 'characters.gameSystems', key + '.scenarios.statuses');
+		lookups.scenarioStatus = this._translateName(SharedConstants.ScenarioStatus, 'characters.gameSystems', key + '.scenarios.statuses');
 
 		return lookups;
 	}

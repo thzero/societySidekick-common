@@ -187,14 +187,14 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 
 		const service = injector.getService(Constants.InjectorKeys.SERVICE_CHARACTERS);
 
-		lookups.boonTypes = service._translateName(Starfinder1eSharedConstants.BoonTypes, 'characters.gameSystems', key + '.boons.types');
-		lookups.classTypes = service._translateName(Starfinder1eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
-		lookups.equipmentCategories = service._translateName(Starfinder1eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories');
-		lookups.equipmentSecondaryCategories = service._translateName(Starfinder1eSharedConstants.EquipmentSecondaryCategories, 'characters.gameSystems', key + '.equipmentSecondaryCategories');
-		lookups.equipmentTertiaryCategories = service._translateName(Starfinder1eSharedConstants.EquipmentTertiaryCategories, 'characters.gameSystems', key + '.equipmentTertiaryCategories');
-		lookups.scenarioAdvancementSpeeds = service._translateName(Starfinder1eSharedConstants.ScenarioAdvancementSpeeds, 'characters.gameSystems', key + '.scenarios.advancementSpeeds');
+		lookups.boonTypes = this._translateName(Starfinder1eSharedConstants.BoonTypes, 'characters.gameSystems', key + '.boons.types');
+		lookups.classTypes = this._translateName(Starfinder1eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
+		lookups.equipmentCategories = this._translateName(Starfinder1eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories');
+		lookups.equipmentSecondaryCategories = this._translateName(Starfinder1eSharedConstants.EquipmentSecondaryCategories, 'characters.gameSystems', key + '.equipmentSecondaryCategories');
+		lookups.equipmentTertiaryCategories = this._translateName(Starfinder1eSharedConstants.EquipmentTertiaryCategories, 'characters.gameSystems', key + '.equipmentTertiaryCategories');
+		lookups.scenarioAdvancementSpeeds = this._translateName(Starfinder1eSharedConstants.ScenarioAdvancementSpeeds, 'characters.gameSystems', key + '.scenarios.advancementSpeeds');
 		lookups.scenarioAdvancementSpeeds = lookups.scenarioAdvancementSpeeds.filter(l => l.id !== Starfinder1eSharedConstants.ScenarioAdvancementSpeeds.INITIAL);
-		lookups.scenarioAdventures = service._translateName(Starfinder1eSharedConstants.ScenarioAdventures, 'characters.gameSystems', key + '.scenarios.adventures');
+		lookups.scenarioAdventures = this._translateName(Starfinder1eSharedConstants.ScenarioAdventures, 'characters.gameSystems', key + '.scenarios.adventures');
 		lookups.scenarioAdventures = lookups.scenarioAdventures.filter(l => l.id !== Starfinder1eSharedConstants.ScenarioAdventures.INITIAL);
 		return lookups;
 	}
