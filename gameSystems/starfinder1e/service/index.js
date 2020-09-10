@@ -184,8 +184,6 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		if (!lookups || !injector || !key)
 			return null;
 
-		const service = injector.getService(Constants.InjectorKeys.SERVICE_CHARACTERS);
-
 		lookups.boonTypes = this._translateName(Starfinder1eSharedConstants.BoonTypes, 'characters.gameSystems', key + '.boons.types');
 		lookups.classTypes = this._translateName(Starfinder1eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
 		lookups.equipmentCategories = this._translateName(Starfinder1eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories');
