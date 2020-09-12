@@ -1,4 +1,3 @@
-import Constants from '../../../../constants';
 import SharedConstants from '../../../constants';
 import Pathfinder2eSharedConstants from '../constants';
 
