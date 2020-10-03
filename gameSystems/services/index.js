@@ -217,40 +217,40 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		throw new NotImplementedError();
 	}
 
-	async _initializeFetches(store, gameSystemId) {
+	async _initializeFetches(correlationId, store, gameSystemId) {
 		if (!store || !gameSystemId)
 			return;
 
 		let fetches = [];
 		// TODO: Consider collapsing into one request...
-		await this._initializeFetchesI(fetches, store, gameSystemId);
+		await this._initializeFetchesI(correlationId, fetches, store, gameSystemId);
 		await Promise.all(fetches);
 	}
 
 
-	async _initializeFetchesI(fetches, store, gameSystemId) {
+	async _initializeFetchesI(correlationId, fetches, store, gameSystemId) {
 		if (!fetches || !store || !gameSystemId)
 			return;
 
-		fetches.push(store.dispatcher.boons.getBoonListing(gameSystemId));
-		fetches.push(store.dispatcher.factions.getFactionListing(gameSystemId));
-		fetches.push(store.dispatcher.scenarios.getScenarioListing(gameSystemId));
+		fetches.push(store.dispatcher.boons.getBoonListing(correlationId, gameSystemId));
+		fetches.push(store.dispatcher.factions.getFactionListing(correlationId, gameSystemId));
+		fetches.push(store.dispatcher.scenarios.getScenarioListing(correlationId, gameSystemId));
 	}
 
-	_initializeLookups(injector, key) {
+	_initializeLookups(correlationId, injector, key) {
 		if (!injector || !key)
 			return null;
-		return this._initializeLookupsI(injector, {}, key);
+		return this._initializeLookupsI(correlationId, injector, {}, key);
 	}
 
-	_initializeLookupsI(injector, lookups, key) {
+	_initializeLookupsI(correlationId, injector, lookups, key) {
 		if (!injector || !lookups || !key)
 			return null;
 
-		lookups.characterStatus = this._translateName(SharedConstants.CharactersStatus, 'characters.gameSystems', key + '.status');
-		lookups.scenarioParticipants = this._translateName(SharedConstants.ScenarioParticipants, 'characters.gameSystems', key + '.scenarios.participants');
+		lookups.characterStatus = this._translateName(correlationId, SharedConstants.CharactersStatus, 'characters.gameSystems', key + '.status');
+		lookups.scenarioParticipants = this._translateName(correlationId, SharedConstants.ScenarioParticipants, 'characters.gameSystems', key + '.scenarios.participants');
 		lookups.scenarioParticipants = lookups.scenarioParticipants.filter(l => l.id !== SharedConstants.ScenarioParticipants.INITIAL);
-		lookups.scenarioStatus = this._translateName(SharedConstants.ScenarioStatus, 'characters.gameSystems', key + '.scenarios.statuses');
+		lookups.scenarioStatus = this._translateName(correlationId, SharedConstants.ScenarioStatus, 'characters.gameSystems', key + '.scenarios.statuses');
 
 		return lookups;
 	}

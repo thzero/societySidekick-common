@@ -96,12 +96,12 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return this._factions(store, hasBlank, SharedConstants.GameSystems.Pathfinder2e.id);
 	}
 
-	async initializeFetches(store) {
-		await this._initializeFetches(store, SharedConstants.GameSystems.Pathfinder2e.id);
+	async initializeFetches(correlationId, store) {
+		await this._initializeFetches(correlationId, store, SharedConstants.GameSystems.Pathfinder2e.id);
 	}
 
-	initializeLookups(injector) {
-		return this._initializeLookups(injector, 'pathfinder2e');
+	initializeLookups(correlationId, injector) {
+		return this._initializeLookups(correlationId, injector, 'pathfinder2e');
 	}
 
 	scenarioLookupAdvancementSpeedName(id, lookups) {
@@ -170,28 +170,28 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return new CharacterScenario();
 	}
 
-	async _initializeFetchesI(fetches, store, gameSystemId) {
-		if (!super._initializeFetchesI(fetches, store, gameSystemId))
+	async _initializeFetchesI(correlationId, fetches, store, gameSystemId) {
+		if (!super._initializeFetchesI(correlationId, fetches, store, gameSystemId))
 			return;
 
-		fetches.push(store.dispatcher.classes.getClassListing(gameSystemId));
+		fetches.push(store.dispatcher.classes.getClassListing(correlationId, gameSystemId));
 	}
 
-	_initializeLookupsI(injector, lookups, key) {
-		lookups = super._initializeLookupsI(injector, lookups, key);
+	_initializeLookupsI(correlationId, injector, lookups, key) {
+		lookups = super._initializeLookupsI(correlationId, injector, lookups, key);
 		if (!lookups || !injector || !key)
 			return null;
 
-		lookups.boonTypes = this._translateName(Pathfinder2eSharedConstants.BoonTypes, 'characters.gameSystems', key + '.boons.types');
-		lookups.classTypes = this._translateName(Pathfinder2eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
-		lookups.equipmentCategories = this._translateName(Pathfinder2eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories.types');
-		lookups.equipmentSecondaryCategories = this._translateName(Pathfinder2eSharedConstants.EquipmentSecondaryCategories, 'characters.gameSystems', key + '.equipmentSecondaryCategories.types');
-		lookups.equipmentTertiaryCategories = this._translateName(Pathfinder2eSharedConstants.EquipmentTertiaryCategories, 'characters.gameSystems', key + '.equipmentTertiaryCategories.types');
-		lookups.scenarioAdvancementSpeeds = this._translateName(Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds, 'characters.gameSystems', key + '.scenarios.advancementSpeeds');
+		lookups.boonTypes = this._translateName(correlationId, .BoonTypes, 'characters.gameSystems', key + '.boons.types');
+		lookups.classTypes = this._translateName(correlationId, Pathfinder2eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
+		lookups.equipmentCategories = this._translateName(correlationId, Pathfinder2eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories.types');
+		lookups.equipmentSecondaryCategories = this._translateName(correlationId, Pathfinder2eSharedConstants.EquipmentSecondaryCategories, 'characters.gameSystems', key + '.equipmentSecondaryCategories.types');
+		lookups.equipmentTertiaryCategories = this._translateName(correlationId, Pathfinder2eSharedConstants.EquipmentTertiaryCategories, 'characters.gameSystems', key + '.equipmentTertiaryCategories.types');
+		lookups.scenarioAdvancementSpeeds = this._translateName(correlationId, Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds, 'characters.gameSystems', key + '.scenarios.advancementSpeeds');
 		lookups.scenarioAdvancementSpeeds = lookups.scenarioAdvancementSpeeds.filter(l => l.id !== Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds.INITIAL);
-		lookups.scenarioAdventures = this._translateName(Pathfinder2eSharedConstants.ScenarioAdventures, 'characters.gameSystems', key + '.scenarios.adventures');
+		lookups.scenarioAdventures = this._translateName(correlationId, Pathfinder2eSharedConstants.ScenarioAdventures, 'characters.gameSystems', key + '.scenarios.adventures');
 		lookups.scenarioAdventures = lookups.scenarioAdventures.filter(l => l.id !== Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
-		lookups.scenarioEvents = this._translateName(Pathfinder2eSharedConstants.ScenarioEvents, 'characters.gameSystems', key + '.scenarios.events');
+		lookups.scenarioEvents = this._translateName(correlationId, Pathfinder2eSharedConstants.ScenarioEvents, 'characters.gameSystems', key + '.scenarios.events');
 		lookups.scenarioEvents = lookups.scenarioEvents.filter(l => l.id !== Pathfinder2eSharedConstants.ScenarioEvents.INITIAL);
 
 		return lookups;

@@ -172,11 +172,11 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return scenario;
 	}
 
-	async _initializeFetchesI(fetches, store, gameSystemId) {
-		if (!super._initializeFetchesI(fetches, store, gameSystemId))
+	async _initializeFetchesI(correlationId, fetches, store, gameSystemId) {
+		if (!super._initializeFetchesI(correlationId, fetches, store, gameSystemId))
 			return;
 
-		fetches.push(store.dispatcher.classes.getClassListing(gameSystemId));
+		fetches.push(store.dispatcher.classes.getClassListing(correlationId, gameSystemId));
 	}
 
 	_initializeLookupsI(injector, lookups, key) {
