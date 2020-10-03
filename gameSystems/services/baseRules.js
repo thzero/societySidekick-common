@@ -1,7 +1,7 @@
 import Constants from '../../../constants';
 import SharedConstants from '../../constants';
 
-import Utility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility';
 import DecimalUtility from '../../utility/decimal';
 
 import NotImplementedError from '@thzero/library_common/errors/notImplemented';
@@ -38,7 +38,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		this.calculateCharacterInit(character);
 
 		let inventory;
-		const scenarios = Utility.sortByOrder(character.scenarios, true);
+		const scenarios = LibraryUtility.sortByOrder(character.scenarios, true);
 		for (const item of scenarios) {
 			if (!this.calculateCharacterScenarioIgnore(item))
 				continue;

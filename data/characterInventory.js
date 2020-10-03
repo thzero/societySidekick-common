@@ -1,8 +1,8 @@
-import Utility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility';
 
 class CharacterInventory {
 	constructor() {
-		this.id = Utility.generateId();
+		this.id = LibraryUtility.generateId();
 		this.boughtScenarioId = null;
 		this.item = null;
 		this.quantity = 1;

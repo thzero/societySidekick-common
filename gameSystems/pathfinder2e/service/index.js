@@ -1,7 +1,7 @@
 import SharedConstants from '../../../constants';
 import Pathfinder2eSharedConstants from '../constants';
 
-import Utility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility';
 
 import BaseGameSystemGamesSystemsService from '../../services/index';
 
@@ -33,9 +33,9 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 			return [];
 
 		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
-		results = Utility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.ARCHETYPE), true);
+		results = LibraryUtility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.ARCHETYPE), true);
 		if (hasBlank)
-			return Utility.selectBlank(results);
+			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}
@@ -85,9 +85,9 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 			return [];
 
 		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
-		results = Utility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.CLASS), true);
+		results = LibraryUtility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.CLASS), true);
 		if (hasBlank)
-			return Utility.selectBlank(results);
+			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}

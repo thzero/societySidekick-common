@@ -1,8 +1,8 @@
-import Utility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility';
 
 class CharacterBoon {
 	constructor() {
-		this.id = Utility.generateId();
+		this.id = LibraryUtility.generateId();
 		this.boonId = null;
 		this.locationId = null;
 		this.timestamp = null;

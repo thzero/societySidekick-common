@@ -1,6 +1,6 @@
 import SharedConstants from '../../../common/constants';
 
-import Utility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility';
 
 import NotImplementedError from '@thzero/library_common/errors/notImplemented';
 
@@ -146,7 +146,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		const scenario = this._initializeCharacterScenario(character);
 
 		if (character.scenarios) {
-			const scenarios = Utility.sortByOrder(character.scenarios, true);
+			const scenarios = LibraryUtility.sortByOrder(character.scenarios, true);
 			const temp = scenarios && scenarios.length > 0 ? scenarios[scenarios.length - 1] : null;
 			scenario.order = temp ? Number(temp.order) + 1 : 0;
 		}
@@ -191,9 +191,9 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !gameSystemId || !store.state.boons.listing)
 			return [];
 
-		const results = Utility.sortByName(store.state.boons.listing.filter(l => l.gameSystemId === gameSystemId), true);
+		const results = LibraryUtility.sortByName(store.state.boons.listing.filter(l => l.gameSystemId === gameSystemId), true);
 		if (hasBlank)
-			return Utility.selectBlank(results);
+			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}
@@ -202,9 +202,9 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !gameSystemId || !store.state.factions.listing)
 			return [];
 
-		const results = Utility.sortByName(store.state.factions.listing.filter(l => l.gameSystemId === gameSystemId), true);
+		const results = LibraryUtility.sortByName(store.state.factions.listing.filter(l => l.gameSystemId === gameSystemId), true);
 		if (hasBlank)
-			return Utility.selectBlank(results);
+			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}
@@ -261,7 +261,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 
 		const results = store.state.scenarios.listing.filter(l => l.gameSystemId == gameSystemId);
 		if (hasBlank)
-			return Utility.selectBlank(results);
+			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}

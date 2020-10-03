@@ -1,10 +1,10 @@
 import SharedConstants from '../constants';
 
-import Utility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility';
 
 class CharacterScenario {
 	constructor() {
-		this.id = Utility.generateId();
+		this.id = LibraryUtility.generateId();
 		this.currencyBought = 0;
 		this.currencyEarned = null;
 		this.currencyIncomeEarned = null;

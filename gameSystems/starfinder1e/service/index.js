@@ -1,7 +1,7 @@
 import SharedConstants from '../../../constants';
 import Starfinder1eSharedConstants from '../constants';
 
-import Utility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility';
 
 import BaseGameSystemGamesSystemsService from '../../services/index';
 
@@ -66,9 +66,9 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 			return [];
 
 		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Starfinder1e.id);
-		results = Utility.sortByName(results.filter(l => l.type === Starfinder1eSharedConstants.ClassTypes.CLASS), true);
+		results = LibraryUtility.sortByName(results.filter(l => l.type === Starfinder1eSharedConstants.ClassTypes.CLASS), true);
 		if (hasBlank)
-			return Utility.selectBlank(results);
+			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}
@@ -147,9 +147,9 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 			return [];
 
 		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Starfinder1e.id);
-		results = Utility.sortByName(results.filter(l => l.type === Starfinder1eSharedConstants.ClassTypes.THEME), true);
+		results = LibraryUtility.sortByName(results.filter(l => l.type === Starfinder1eSharedConstants.ClassTypes.THEME), true);
 		if (hasBlank)
-			return Utility.selectBlank(results);
+			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}
@@ -164,7 +164,7 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		const scenario = new CharacterScenario();
 
 		if (character && character.scenarios) {
-			const scenarios = Utility.sortByOrder(character.scenarios, true);
+			const scenarios = LibraryUtility.sortByOrder(character.scenarios, true);
 			const temp = scenarios && scenarios.length > 0 ? scenarios[scenarios.length - 1] : null;
 			scenario.classId = temp ? temp.classId : null;
 		}
