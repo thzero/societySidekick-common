@@ -1,201 +1,286 @@
-import SharedConstants from '../../../constants';
-import Pathfinder2eSharedConstants from '../constants';
+import SharedConstants from '../../../common/constants';
 
 import LibraryUtility from '@thzero/library_common/utility';
 
-import BaseGameSystemGamesSystemsService from '../../services/index';
+import NotImplementedError from '@thzero/library_common/errors/notImplemented';
 
-import CharacterBoon from '../data/characterBoon';
-import CharacterScenario from '../data/characterScenario';
+import BaseGameSystemGamesSystemsService from '../../../gameSystems/service/index';
 
-class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsService {
-	constructor() {
-		super(SharedConstants.GameSystems.Pathfinder2e.friendlyId);
+class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsService {
+	constructor(il8n) {
+		super();
+
+		this.il8n = il8n;
 	}
 
-	archetypeName(value, store) {
+	boonDescription(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		return this.archetypeNameById(value.id, store);
+		return this.boonDescriptionById(correlationId, value.id, store);
 	}
 
-	archetypeNameById(id, store) {
+	// eslint-disable-next-line
+	boonDescriptionById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
-		const results = store.getters.getClass(id);
+		const results = store.getters.getBoon(id);
+		return results ? results.description : '';
+	}
+
+	boonName(correlationId, value, store) {
+		if (!store || !value)
+			return '';
+
+		return this.boonNameById(correlationId, value.id, store);
+	}
+
+	// eslint-disable-next-line
+	boonNameById(correlationId, id, store) {
+		if (!store || !id)
+			return '';
+
+		const results = store.getters.getBoon(id);
 		return results ? results.name : '';
 	}
 
-	archetypes(store, hasBlank) {
-		if (!store || !store.state.classes.listing)
+	// eslint-disable-next-line
+	boonUses(correlationId, value, store) {
+		if (!store || !value)
+			return '';
+
+		return this.boonUsesById(value.id, store);
+	}
+
+	// eslint-disable-next-line
+	boonUsesById(correlationId, id, store) {
+		if (!store || !id)
+			return '';
+
+		const results = store.getters.getBoon(id);
+		return results ? results.uses : null;
+	}
+
+	// eslint-disable-next-line
+	boons(correlationId, store, hasBlank) {
+		throw new NotImplementedError();
+	}
+
+	// eslint-disable-next-line
+	characterLookupStatusName(correlationId, id, lookups) {
+		return lookups ? this.lookupName(correlationId, id, lookups.characterStatus) : '';
+	}
+
+	determineScenarioDescription(correlationId, value, store) {
+		if (!value || !store)
+			return '';
+
+		return this.determineScenarioDescriptionById(correlationId, value.scenarioId, store);
+	}
+
+	determineScenarioDescriptionById(correlationId, id, store) {
+		if (!id || !store)
+			return '';
+
+		const results = store.getters.getScenario(id);
+		return this.scenarioDescription(correlationId, results);
+	}
+
+	determineScenarioName(correlationId, value, store) {
+		if (!value || !store)
+			return '';
+
+		return this.determineScenarioNameById(correlationId, value.scenarioId, store);
+	}
+
+	determineScenarioNameById(correlationId, id, store) {
+		if (!id || !store)
+			return '';
+
+		const results = store.getters.getScenario(id);
+		return this.scenarioName(correlationId, results);
+	}
+
+	factionDescription(correlationId, value, store) {
+		if (!store || !value)
+			return '';
+
+		return this.factionDescriptionById(correlationId, value.id, store);
+	}
+
+	// eslint-disable-next-line
+	factionDescriptionById(correlationId, id, store) {
+		if (!store || !id)
+			return '';
+
+		const results = store.getters.getFaction(id);
+		return results ? results.description : '';
+	}
+
+	factionName(correlationId, value, store) {
+		if (!store || !value)
+			return '';
+
+		return this.factionNameById(correlationId, value.id, store);
+	}
+
+	// eslint-disable-next-line
+	factionNameById(correlationId, id, store) {
+		if (!store || !id)
+			return '';
+
+		const results = store.getters.getFaction(id);
+		return results ? results.name : '';
+	}
+
+	// eslint-disable-next-line
+	factions(correlationId, store, hasBlank) {
+		throw new NotImplementedError();
+	}
+
+	initializeCharacterBoon(correlationId, character) {
+		if (!character)
+			return null;
+
+		return this._initializeCharacterBoon(correlationId, character);
+	}
+
+	initializeCharacterScenario(correlationId, character) {
+		if (!character)
+			return null;
+
+		const scenario = this._initializeCharacterScenario(correlationId, character);
+
+		if (character.scenarios) {
+			const scenarios = LibraryUtility.sortByOrder(character.scenarios, true);
+			const temp = scenarios && scenarios.length > 0 ? scenarios[scenarios.length - 1] : null;
+			scenario.order = temp ? Number(temp.order) + 1 : 0;
+		}
+
+		return scenario;
+	}
+
+	// eslint-disable-next-line
+	lookupName(correlationId, id, lookups) {
+		if (!id)
+			return '';
+
+		const results = lookups.find(l => l.id == id);
+		return results ? results.name : '';
+	}
+
+	// eslint-disable-next-line
+	scenarioDescription(correlationId, item) {
+		if (!item)
+			return '';
+
+		return item.description;
+	}
+
+	// eslint-disable-next-line
+	scenarioLookupParticipantName(correlationId, id, lookups) {
+		return lookups ? this.lookupName(correlationId, id, lookups.scenarioParticipants) : '';
+	}
+
+	// eslint-disable-next-line
+	scenarioLookupStatusName(correlationId, id, lookups) {
+		return lookups ? this.lookupName(correlationId, id, lookups.scenarioStatus) : '';
+	}
+
+	// eslint-disable-next-line
+	scenarioName(correlationId, item) {
+		return null;
+	}
+
+	// eslint-disable-next-line
+	scenarios(correlationId, store, hasBlank) {
+		throw new NotImplementedError();
+	}
+
+	// eslint-disable-next-line
+	_boons(correlationId, store, hasBlank, gameSystemId) {
+		if (!store || !gameSystemId || !store.state.boons.listing)
 			return [];
 
-		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
-		results = LibraryUtility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.ARCHETYPE), true);
+		const results = LibraryUtility.sortByName(store.state.boons.listing.filter(l => l.gameSystemId === gameSystemId), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}
 
-	boons(store, hasBlank) {
-		return this._boons(store, hasBlank, SharedConstants.GameSystems.Pathfinder2e.id);
-	}
-
-	calculateExperiencePointLevel(experiencePoints) {
-		if (experiencePoints < 4)
-			return 1;
-		if (experiencePoints < 10)
-			return 2;
-		return 3;
-	}
-
-	className(value, store) {
-		if (!store || !value)
-			return '';
-
-		return this.classNameById(value.id, store);
-	}
-
-	classNameById(id, store) {
-		if (!store || !id)
-			return '';
-
-		const results = store.getters.getClass(id);
-		return results ? results.name : '';
-	}
-
-	classNamesAndLevels(value, store) {
-		if (!store || !value)
-			return '';
-
-		const className = this.classNameById(value.classId, store);
-		if (value.archetypeId) {
-			const archetypeName = this.archetypeNameById(value.archetypeId, store);
-			return `${className} ${archetypeName}`;
-		}
-
-		return className;
-	}
-
-	classes(store, hasBlank) {
-		if (!store || !store.state.classes.listing)
+	// eslint-disable-next-line
+	_factions(correlationId, store, hasBlank, gameSystemId) {
+		if (!store || !gameSystemId || !store.state.factions.listing)
 			return [];
 
-		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
-		results = LibraryUtility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.CLASS), true);
+		const results = LibraryUtility.sortByName(store.state.factions.listing.filter(l => l.gameSystemId === gameSystemId), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
 
 		return results;
 	}
 
-	factions(store, hasBlank) {
-		return this._factions(store, hasBlank, SharedConstants.GameSystems.Pathfinder2e.id);
-	}
-
-	async initializeFetches(correlationId, store) {
-		await this._initializeFetches(correlationId, store, SharedConstants.GameSystems.Pathfinder2e.id);
-	}
-
-	initializeLookups(correlationId, injector) {
-		return this._initializeLookups(correlationId, injector, 'pathfinder2e');
-	}
-
-	scenarioLookupAdvancementSpeedName(id, lookups) {
-		if (!lookups)
-			return '';
-		return this.lookupName(id, lookups.scenarioAdvancementSpeeds);
-	}
-
-	scenarioLookupAdventureName(id, lookups) {
-		if (!lookups)
-			return '';
-		return this.lookupName(id, lookups.scenarioAdventures);
-	}
-
-	scenarioLookupEventName(id, lookups) {
-		if (!lookups)
-			return '';
-		return this.lookupName(id, lookups.scenarioEvents);
-	}
-
-	scenarioName(item) {
-		if (!item || !item.type)
-			return '';
-
-		if (
-				(item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE.toLowerCase()) ||
-				(item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE.toLowerCase())
-			) {
-			return item.name;
-		}
-
-		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH.toLowerCase()) {
-			if (item.scenario)
-				return '#' + item.scenario + ' ' + item.name;
-			return item.name;
-		}
-
-		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST.toLowerCase()) {
-			if (item.scenario)
-				return '#' + item.scenario + ' ' + item.name;
-			return item.name;
-		}
-
-		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO.toLowerCase()) {
-			if (item.season && item.scenario)
-				return '#' + (item.season ? item.season : '') + '-' + (item.scenario ? item.scenario : '') + ' ' + item.name;
-			if (!item.season && item.scenario)
-				return '#' + item.scenario + ' ' + item.name;
-			return item.name;
-		}
-
-		return item.name;
-	}
-
-	scenarios(store, hasBlank) {
-		return this._scenarios(store, hasBlank, SharedConstants.GameSystems.Pathfinder2e.id);
+	// eslint-disable-next-line
+	_initializeCharacterBoon(correlationId, character) {
+		throw new NotImplementedError();
 	}
 
 	// eslint-disable-next-line
-	_initializeCharacterBoon(character) {
-		return new CharacterBoon();
+	_initializeCharacterScenario(correlationId, character) {
+		throw new NotImplementedError();
 	}
 
-	// eslint-disable-next-line
-	_initializeCharacterScenario(character) {
-		return new CharacterScenario();
-	}
-
-	async _initializeFetchesI(correlationId, fetches, store, gameSystemId) {
-		if (!super._initializeFetchesI(correlationId, fetches, store, gameSystemId))
+	async _initializeFetches(correlationId, store, gameSystemId) {
+		if (!store || !gameSystemId)
 			return;
 
-		fetches.push(store.dispatcher.classes.getClassListing(correlationId, gameSystemId));
+		let fetches = [];
+		// TODO: Consider collapsing into one request...
+		await this._initializeFetchesI(correlationId, fetches, store, gameSystemId);
+		await Promise.all(fetches);
+	}
+
+
+	async _initializeFetchesI(correlationId, fetches, store, gameSystemId) {
+		if (!fetches || !store || !gameSystemId)
+			return;
+
+		fetches.push(store.dispatcher.boons.getBoonListing(correlationId, gameSystemId));
+		fetches.push(store.dispatcher.factions.getFactionListing(correlationId, gameSystemId));
+		fetches.push(store.dispatcher.scenarios.getScenarioListing(correlationId, gameSystemId));
+	}
+
+	_initializeLookups(correlationId, injector, key) {
+		if (!injector || !key)
+			return null;
+		return this._initializeLookupsI(correlationId, injector, {}, key);
 	}
 
 	_initializeLookupsI(correlationId, injector, lookups, key) {
-		lookups = super._initializeLookupsI(correlationId, injector, lookups, key);
-		if (!lookups || !injector || !key)
+		if (!injector || !lookups || !key)
 			return null;
 
-		lookups.boonTypes = this._translateName(correlationId, .BoonTypes, 'characters.gameSystems', key + '.boons.types');
-		lookups.classTypes = this._translateName(correlationId, Pathfinder2eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
-		lookups.equipmentCategories = this._translateName(correlationId, Pathfinder2eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories.types');
-		lookups.equipmentSecondaryCategories = this._translateName(correlationId, Pathfinder2eSharedConstants.EquipmentSecondaryCategories, 'characters.gameSystems', key + '.equipmentSecondaryCategories.types');
-		lookups.equipmentTertiaryCategories = this._translateName(correlationId, Pathfinder2eSharedConstants.EquipmentTertiaryCategories, 'characters.gameSystems', key + '.equipmentTertiaryCategories.types');
-		lookups.scenarioAdvancementSpeeds = this._translateName(correlationId, Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds, 'characters.gameSystems', key + '.scenarios.advancementSpeeds');
-		lookups.scenarioAdvancementSpeeds = lookups.scenarioAdvancementSpeeds.filter(l => l.id !== Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds.INITIAL);
-		lookups.scenarioAdventures = this._translateName(correlationId, Pathfinder2eSharedConstants.ScenarioAdventures, 'characters.gameSystems', key + '.scenarios.adventures');
-		lookups.scenarioAdventures = lookups.scenarioAdventures.filter(l => l.id !== Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
-		lookups.scenarioEvents = this._translateName(correlationId, Pathfinder2eSharedConstants.ScenarioEvents, 'characters.gameSystems', key + '.scenarios.events');
-		lookups.scenarioEvents = lookups.scenarioEvents.filter(l => l.id !== Pathfinder2eSharedConstants.ScenarioEvents.INITIAL);
+		lookups.characterStatus = this._translateName(correlationId, SharedConstants.CharactersStatus, 'characters.gameSystems', key + '.status');
+		lookups.scenarioParticipants = this._translateName(correlationId, SharedConstants.ScenarioParticipants, 'characters.gameSystems', key + '.scenarios.participants');
+		lookups.scenarioParticipants = lookups.scenarioParticipants.filter(l => l.id !== SharedConstants.ScenarioParticipants.INITIAL);
+		lookups.scenarioStatus = this._translateName(correlationId, SharedConstants.ScenarioStatus, 'characters.gameSystems', key + '.scenarios.statuses');
 
 		return lookups;
 	}
+
+	// eslint-disable-next-line
+	_scenarios(correlationId, store, hasBlank, gameSystemId) {
+		if (!store || !gameSystemId)
+			return [];
+
+		const results = store.state.scenarios.listing.filter(l => l.gameSystemId == gameSystemId);
+		if (hasBlank)
+			return LibraryUtility.selectBlank(results);
+
+		return results;
+	}
 }
 
-export default Pathfinder2eGameSystemGamesSystemsService;
+export default SharedGameSystemGamesSystemsService;

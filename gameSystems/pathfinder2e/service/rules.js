@@ -8,7 +8,8 @@ import BaseRulesGamesSystemsService from '../../services/baseRules';
 class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService {
 	static GoldFixed = 2;
 
-	async calculateCharacterAdditional(character, user) {
+	// eslint-disable-next-line
+	async calculateCharacterAdditional(correlationId, character, user) {
 		let fameTotalEarned = this._initDecimal(0);
 		let fameTotalSpent = this._initDecimal(0);
 		character.fame.forEach((item) => {
@@ -53,12 +54,13 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 	}
 
 	// eslint-disable-next-line
-	async calculateCharacterCleanup(character, user) {
+	async calculateCharacterCleanup(correlationId, character, user) {
 		delete character.factionF;
 		delete character.factionR;
 	}
 
-	calculateCharacterInit(character) {
+	// eslint-disable-next-line
+	calculateCharacterInit(correlationId, character) {
 		character.achievementPoints = this._initDecimal(0);
 		character.factionF = null;
 		character.factionR = null;
@@ -66,7 +68,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		character.reputation = [];
 	}
 
-	calculateCharacterScenarioAdditional(character, item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioAdditional(correlationId, character, item) {
 		if (item.achievementPointsEarned)
 			character.achievementPoints = character.achievementPoints.plus(item.achievementPointsEarned);
 
@@ -100,11 +103,13 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		}
 	}
 
-	calculateCharacterScenarioExperiencePoints(character, item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioExperiencePoints(correlationId, character, item) {
 		return character.experiencePoints.plus(item.experiencePointsEarned);
 	}
 
-	calculateCharacterScenarioIgnore(item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioIgnore(correlationId, item) {
 		if (item.scenarioStatus === SharedConstants.ScenarioStatus.IGNORE)
 			return false;
 		if (item.scenarioStatus === SharedConstants.ScenarioStatus.REPEATED)
@@ -112,28 +117,32 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return true;
 	}
 
-	calculateCharacterScenarioInitial(item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioInitial(correlationId, item) {
 		return (item.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
 	}
 
-	calculateExperienceToNextLevel(experiencePoints) {
+	// eslint-disable-next-line
+	calculateExperienceToNextLevel(correlationId, experiencePoints) {
 		const remainder = 12 - experiencePoints % 12;
 		return remainder;
 	}
 
-	calculateLevel(experiencePoints) {
+	// eslint-disable-next-line
+	calculateLevel(correlationId, experiencePoints) {
 		const level = Math.floor(experiencePoints / 12);
 		return 1 + level;
 	}
 
-	calculateScenario(scenario) {
-		scenario.achievementPointsEarned = this.calculateScenarioAchievementPointsEarned(scenario);
-		scenario.downtimePointsEarned = this.calculateScenarioDowntimePointsEarned(scenario);
-		scenario.experiencePointsEarned = this.calculateScenarioExperiencePointsEarned(scenario);
+	calculateScenario(correlationId, scenario) {
+		scenario.achievementPointsEarned = this.calculateScenarioAchievementPointsEarned(correlationId, scenario);
+		scenario.downtimePointsEarned = this.calculateScenarioDowntimePointsEarned(correlationId, scenario);
+		scenario.experiencePointsEarned = this.calculateScenarioExperiencePointsEarned(correlationId, scenario);
 		scenario.fameEarned = this.calculateScenarioFameEarned(scenario);
 	}
 
-	calculateScenarioAchievementPointsEarned(scenario) {
+	// eslint-disable-next-line
+	calculateScenarioAchievementPointsEarned(correlationId, scenario) {
 		if (!scenario)
 			return 0;
 
@@ -145,7 +154,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return value ? value.earned : 0;
 	}
 
-	calculateScenarioDowntimePointsEarned(scenario) {
+	// eslint-disable-next-line
+	calculateScenarioDowntimePointsEarned(correlationId, scenario) {
 		if (!scenario)
 			return 0;
 
@@ -169,7 +179,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return value;
 	}
 
-	calculateScenarioExperiencePointsEarned(scenario) {
+	// eslint-disable-next-line
+	calculateScenarioExperiencePointsEarned(correlationId, scenario) {
 		if (!scenario)
 			return 0;
 
@@ -193,7 +204,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return value;
 	}
 
-	calculateScenarioFameEarned(scenario) {
+	// eslint-disable-next-line
+	calculateScenarioFameEarned(correlationId, scenario) {
 		if (!scenario)
 			return 0;
 
@@ -217,7 +229,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return value;
 	}
 
-	calculateScenarioReputationEarned(scenario) {
+	// eslint-disable-next-line
+	calculateScenarioReputationEarned(correlationId, scenario) {
 		if (!scenario)
 			return 0;
 
@@ -241,7 +254,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return value;
 	}
 
-	isAchievementPointsEarnedReadOnly(scenario) {
+	// eslint-disable-next-line
+	isAchievementPointsEarnedReadOnly(correlationId, scenario) {
 		if (!scenario)
 			return false;
 
@@ -251,7 +265,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		);
 	}
 
-	isAdventureScenario(scenario) {
+	// eslint-disable-next-line
+	isAdventureScenario(correlationId, scenario) {
 		if (!scenario)
 			return false;
 
@@ -261,7 +276,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		);
 	}
 
-	isDowntimePointsReadOnly(scenario) {
+	// eslint-disable-next-line
+	isDowntimePointsReadOnly(correlationId, scenario) {
 		if (!scenario)
 			return false;
 

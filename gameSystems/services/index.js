@@ -13,14 +13,15 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		this.il8n = il8n;
 	}
 
-	boonDescription(value, store) {
+	boonDescription(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		return this.boonDescriptionById(value.id, store);
+		return this.boonDescriptionById(correlationId, value.id, store);
 	}
 
-	boonDescriptionById(id, store) {
+	// eslint-disable-next-line
+	boonDescriptionById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
@@ -28,14 +29,15 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return results ? results.description : '';
 	}
 
-	boonName(value, store) {
+	boonName(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		return this.boonNameById(value.id, store);
+		return this.boonNameById(correlationId, value.id, store);
 	}
 
-	boonNameById(id, store) {
+	// eslint-disable-next-line
+	boonNameById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
@@ -43,14 +45,16 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return results ? results.name : '';
 	}
 
-	boonUses(value, store) {
+	// eslint-disable-next-line
+	boonUses(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
 		return this.boonUsesById(value.id, store);
 	}
 
-	boonUsesById(id, store) {
+	// eslint-disable-next-line
+	boonUsesById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
@@ -59,52 +63,53 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 	}
 
 	// eslint-disable-next-line
-	boons(store, hasBlank) {
+	boons(correlationId, store, hasBlank) {
 		throw new NotImplementedError();
 	}
 
-	characterLookupStatusName(id, lookups) {
-		return lookups ? this.lookupName(id, lookups.characterStatus) : '';
+	characterLookupStatusName(correlationId, id, lookups) {
+		return lookups ? this.lookupName(correlationId, id, lookups.characterStatus) : '';
 	}
 
-	determineScenarioDescription(value, store) {
+	determineScenarioDescription(correlationId, value, store) {
 		if (!value || !store)
 			return '';
 
-		return this.determineScenarioDescriptionById(value.scenarioId, store);
+		return this.determineScenarioDescriptionById(correlationId, value.scenarioId, store);
 	}
 
-	determineScenarioDescriptionById(id, store) {
+	determineScenarioDescriptionById(correlationId, id, store) {
 		if (!id || !store)
 			return '';
 
 		const results = store.getters.getScenario(id);
-		return this.scenarioDescription(results);
+		return this.scenarioDescription(correlationId, results);
 	}
 
-	determineScenarioName(value, store) {
+	determineScenarioName(correlationId, value, store) {
 		if (!value || !store)
 			return '';
 
-		return this.determineScenarioNameById(value.scenarioId, store);
+		return this.determineScenarioNameById(correlationId, value.scenarioId, store);
 	}
 
-	determineScenarioNameById(id, store) {
+	determineScenarioNameById(correlationId, id, store) {
 		if (!id || !store)
 			return '';
 
 		const results = store.getters.getScenario(id);
-		return this.scenarioName(results);
+		return this.scenarioName(correlationId, results);
 	}
 
-	factionDescription(value, store) {
+	factionDescription(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		return this.factionDescriptionById(value.id, store);
+		return this.factionDescriptionById(correlationId, value.id, store);
 	}
 
-	factionDescriptionById(id, store) {
+	// eslint-disable-next-line
+	factionDescriptionById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
@@ -112,14 +117,15 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return results ? results.description : '';
 	}
 
-	factionName(value, store) {
+	factionName(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		return this.factionNameById(value.id, store);
+		return this.factionNameById(correlationId, value.id, store);
 	}
 
-	factionNameById(id, store) {
+	// eslint-disable-next-line
+	factionNameById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
@@ -128,22 +134,22 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 	}
 
 	// eslint-disable-next-line
-	factions(store, hasBlank) {
+	factions(correlationId, store, hasBlank) {
 		throw new NotImplementedError();
 	}
 
-	initializeCharacterBoon(character) {
+	initializeCharacterBoon(correlationId, character) {
 		if (!character)
 			return null;
 
-		return this._initializeCharacterBoon(character);
+		return this._initializeCharacterBoon(correlationId, character);
 	}
 
-	initializeCharacterScenario(character) {
+	initializeCharacterScenario(correlationId, character) {
 		if (!character)
 			return null;
 
-		const scenario = this._initializeCharacterScenario(character);
+		const scenario = this._initializeCharacterScenario(correlationId, character);
 
 		if (character.scenarios) {
 			const scenarios = LibraryUtility.sortByOrder(character.scenarios, true);
@@ -154,7 +160,8 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return scenario;
 	}
 
-	lookupName(id, lookups) {
+	// eslint-disable-next-line
+	lookupName(correlationId, id, lookups) {
 		if (!id)
 			return '';
 
@@ -162,32 +169,34 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return results ? results.name : '';
 	}
 
-	scenarioDescription(item) {
+	// eslint-disable-next-line
+	scenarioDescription(correlationId, item) {
 		if (!item)
 			return '';
 
 		return item.description;
 	}
 
-	scenarioLookupParticipantName(id, lookups) {
-		return lookups ? this.lookupName(id, lookups.scenarioParticipants) : '';
+	scenarioLookupParticipantName(correlationId, id, lookups) {
+		return lookups ? this.lookupName(correlationId, id, lookups.scenarioParticipants) : '';
 	}
 
-	scenarioLookupStatusName(id, lookups) {
-		return lookups ? this.lookupName(id, lookups.scenarioStatus) : '';
+	scenarioLookupStatusName(correlationId, id, lookups) {
+		return lookups ? this.lookupName(correlationId, id, lookups.scenarioStatus) : '';
 	}
 
 	// eslint-disable-next-line
-	scenarioName(item) {
+	scenarioName(correlationId, item) {
 		return null;
 	}
 
 	// eslint-disable-next-line
-	scenarios(store, hasBlank) {
+	scenarios(correlationId, store, hasBlank) {
 		throw new NotImplementedError();
 	}
 
-	_boons(store, hasBlank, gameSystemId) {
+	// eslint-disable-next-line
+	_boons(correlationId, store, hasBlank, gameSystemId) {
 		if (!store || !gameSystemId || !store.state.boons.listing)
 			return [];
 
@@ -198,7 +207,8 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return results;
 	}
 
-	_factions(store, hasBlank, gameSystemId) {
+	// eslint-disable-next-line
+	_factions(correlationId, store, hasBlank, gameSystemId) {
 		if (!store || !gameSystemId || !store.state.factions.listing)
 			return [];
 
@@ -209,11 +219,13 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return results;
 	}
 
-	_initializeCharacterBoon() {
+	// eslint-disable-next-line
+	_initializeCharacterBoon(correlationId, character) {
 		throw new NotImplementedError();
 	}
 
-	_initializeCharacterScenario() {
+	// eslint-disable-next-line
+	_initializeCharacterScenario(correlationId, character) {
 		throw new NotImplementedError();
 	}
 
@@ -255,7 +267,8 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		return lookups;
 	}
 
-	_scenarios(store, hasBlank, gameSystemId) {
+	// eslint-disable-next-line
+	_scenarios(correlationId, store, hasBlank, gameSystemId) {
 		if (!store || !gameSystemId)
 			return [];
 

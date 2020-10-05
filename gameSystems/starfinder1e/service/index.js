@@ -13,8 +13,8 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		super(SharedConstants.GameSystems.Starfinder1e.friendlyId);
 	}
 
-	boons(store, hasBlank) {
-		return this._boons(store, hasBlank, SharedConstants.GameSystems.Starfinder1e.id);
+	boons(correlationId, store, hasBlank) {
+		return this._boons(correlationId, store, hasBlank, SharedConstants.GameSystems.Starfinder1e.id);
 	}
 
 	calculateExperiencePointLevel(experiencePoints) {
@@ -61,7 +61,7 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return results;
 	}
 
-	classes(store, hasBlank) {
+	classes(correlationId, store, hasBlank) {
 		if (!store || !store.state.classes.listing)
 			return [];
 
@@ -73,28 +73,28 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return results;
 	}
 
-	factions(store, hasBlank) {
-		return this._factions(store, hasBlank, SharedConstants.GameSystems.Starfinder1e.id);
+	factions(correlationId, store, hasBlank) {
+		return this._factions(correlationId, store, hasBlank, SharedConstants.GameSystems.Starfinder1e.id);
 	}
 
-	async initializeFetches(store) {
-		await this._initializeFetches(store, SharedConstants.GameSystems.Starfinder1e.id);
+	async initializeFetches(correlationId, store) {
+		await this._initializeFetches(correlationId, store, SharedConstants.GameSystems.Starfinder1e.id);
 	}
 
-	initializeLookups(injector) {
-		return this._initializeLookups(injector, 'starfinder1e');
+	initializeLookups(correlationId, injector) {
+		return this._initializeLookups(correlationId, injector, 'starfinder1e');
 	}
 
-	scenarioLookupAdvancementSpeedName(id, lookups) {
+	scenarioLookupAdvancementSpeedName(correlationId, id, lookups) {
 		if (!lookups)
 			return '';
-		return this.lookupName(id, lookups.scenarioAdvancementSpeeds);
+		return this.lookupName(correlationId, id, lookups.scenarioAdvancementSpeeds);
 	}
 
-	scenarioLookupAdventureName(id, lookups) {
+	scenarioLookupAdventureName(correlationId, id, lookups) {
 		if (!lookups)
 			return '';
-		return this.lookupName(id, lookups.scenarioAdventures);
+		return this.lookupName(correlationId, id, lookups.scenarioAdventures);
 	}
 
 	scenarioName(item) {
@@ -123,8 +123,8 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return item.name;
 	}
 
-	scenarios(store, hasBlank) {
-		return this._scenarios(store, hasBlank, SharedConstants.GameSystems.Starfinder1e.id);
+	scenarios(correlationId, store, hasBlank) {
+		return this._scenarios(correlationId, store, hasBlank, SharedConstants.GameSystems.Starfinder1e.id);
 	}
 
 	themeName(value, store) {
@@ -142,7 +142,8 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return results ? results.name : '';
 	}
 
-	themes(store, hasBlank) {
+	// eslint-disable-next-lin
+	themes(correlationId, store, hasBlank) {
 		if (!store || !store.state.classes.listing)
 			return [];
 
@@ -155,12 +156,12 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 	}
 
 	// eslint-disable-next-line
-	_initializeCharacterBoon(character) {
+	_initializeCharacterBoon(correlationId, character) {
 		return new CharacterBoon();
 	}
 
 	// eslint-disable-next-line
-	_initializeCharacterScenario(character) {
+	_initializeCharacterScenario(correlationId, character) {
 		const scenario = new CharacterScenario();
 
 		if (character && character.scenarios) {
@@ -179,19 +180,19 @@ class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		fetches.push(store.dispatcher.classes.getClassListing(correlationId, gameSystemId));
 	}
 
-	_initializeLookupsI(injector, lookups, key) {
-		lookups = super._initializeLookupsI(injector, lookups, key);
+	_initializeLookupsI(correlactionId, injector, lookups, key) {
+		lookups = super._initializeLookupsI(correlactionId, injector, lookups, key);
 		if (!lookups || !injector || !key)
 			return null;
 
-		lookups.boonTypes = this._translateName(Starfinder1eSharedConstants.BoonTypes, 'characters.gameSystems', key + '.boons.types');
-		lookups.classTypes = this._translateName(Starfinder1eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
-		lookups.equipmentCategories = this._translateName(Starfinder1eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories');
-		lookups.equipmentSecondaryCategories = this._translateName(Starfinder1eSharedConstants.EquipmentSecondaryCategories, 'characters.gameSystems', key + '.equipmentSecondaryCategories');
-		lookups.equipmentTertiaryCategories = this._translateName(Starfinder1eSharedConstants.EquipmentTertiaryCategories, 'characters.gameSystems', key + '.equipmentTertiaryCategories');
-		lookups.scenarioAdvancementSpeeds = this._translateName(Starfinder1eSharedConstants.ScenarioAdvancementSpeeds, 'characters.gameSystems', key + '.scenarios.advancementSpeeds');
+		lookups.boonTypes = this._translateName(correlactionId, Starfinder1eSharedConstants.BoonTypes, 'characters.gameSystems', key + '.boons.types');
+		lookups.classTypes = this._translateName(correlactionId, Starfinder1eSharedConstants.ClassTypes, 'characters.gameSystems', key + '.classes.types');
+		lookups.equipmentCategories = this._translateName(correlactionId, Starfinder1eSharedConstants.EquipmentCategories, 'characters.gameSystems', key + '.equipmentCategories');
+		lookups.equipmentSecondaryCategories = this._translateName(correlactionId, Starfinder1eSharedConstants.EquipmentSecondaryCategories, 'characters.gameSystems', key + '.equipmentSecondaryCategories');
+		lookups.equipmentTertiaryCategories = this._translateName(correlactionId, Starfinder1eSharedConstants.EquipmentTertiaryCategories, 'characters.gameSystems', key + '.equipmentTertiaryCategories');
+		lookups.scenarioAdvancementSpeeds = this._translateName(correlactionId, Starfinder1eSharedConstants.ScenarioAdvancementSpeeds, 'characters.gameSystems', key + '.scenarios.advancementSpeeds');
 		lookups.scenarioAdvancementSpeeds = lookups.scenarioAdvancementSpeeds.filter(l => l.id !== Starfinder1eSharedConstants.ScenarioAdvancementSpeeds.INITIAL);
-		lookups.scenarioAdventures = this._translateName(Starfinder1eSharedConstants.ScenarioAdventures, 'characters.gameSystems', key + '.scenarios.adventures');
+		lookups.scenarioAdventures = this._translateName(correlactionId, Starfinder1eSharedConstants.ScenarioAdventures, 'characters.gameSystems', key + '.scenarios.adventures');
 		lookups.scenarioAdventures = lookups.scenarioAdventures.filter(l => l.id !== Starfinder1eSharedConstants.ScenarioAdventures.INITIAL);
 		return lookups;
 	}

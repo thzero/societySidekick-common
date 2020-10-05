@@ -1,7 +1,7 @@
 import Constants from '../../../constants';
 import SharedConstants from '../../constants';
 
-import LibraryUtility from '@thzero/library_common/utility';
+import Utility from '@thzero/library_common/utility';
 import DecimalUtility from '../../utility/decimal';
 
 import NotImplementedError from '@thzero/library_common/errors/notImplemented';
@@ -15,7 +15,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		this._serviceCharacters = this._injector.getService(Constants.InjectorKeys.SERVICE_CHARACTERS);
 	}
 
-	async calculateCharacter(character, user, equipmentId) {
+	async calculateCharacter(correlationId, character, user, equipmentId) {
 		if (!character)
 			return;
 
@@ -35,12 +35,12 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		character.currencySold = this._initDecimal(0);
 		character.currencyTotal = this._initDecimal(0);
 
-		this.calculateCharacterInit(character);
+		this.calculateCharacterInit(correlationId, character);
 
 		let inventory;
-		const scenarios = LibraryUtility.sortByOrder(character.scenarios, true);
+		const scenarios = Utility.sortByOrder(character.scenarios, true);
 		for (const item of scenarios) {
-			if (!this.calculateCharacterScenarioIgnore(item))
+			if (!this.calculateCharacterScenarioIgnore(correlationId, item))
 				continue;
 
 			if (item.status != SharedConstants.CharactersStatus.ACTIVE) {
@@ -48,12 +48,12 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 				continue;
 			}
 
-			character.experiencePoints = this.calculateCharacterScenarioExperiencePoints(character, item);
+			character.experiencePoints = this.calculateCharacterScenarioExperiencePoints(correlationId, character, item);
 			item.experiencePoints = character.experiencePoints;
 
 			item.level = null;
-			if (!this.calculateCharacterScenarioInitial(item))
-				item.level = this.calculateLevel(character.experiencePoints);
+			if (!this.calculateCharacterScenarioInitial(correlationId, item))
+				item.level = this.calculateLevel(correlationId, character.experiencePoints);
 
 			item.currencyEarned = this._initDecimal(item.currencyEarned);
 			character.currencyEarned = character.currencyEarned.plus(item.currencyEarned);
@@ -62,7 +62,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 
 			item.currencyGained = item.currencyEarned;
 			item.currencyTotal = character.currencyTotal;
-			this.calcualteCharacterScenarioCurrency(character, item);
+			this.calcualteCharacterScenarioCurrency(correlationId, character, item);
 			if (item.currencySpent) {
 				character.currencySpent = character.currencySpent.plus(item.currencySpent);
 				character.currencyTotal = character.currencyTotal.minus(item.currencySpent);
@@ -78,7 +78,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 					if (inventoryItem.id === equipmentId)
 						continue;
 
-					inventoryItem.total = this.calculateItemTotal(inventoryItem.quantity, inventoryItem.value);
+					inventoryItem.total = this.calculateItemTotal(correlationId, inventoryItem.quantity, inventoryItem.value);
 					item.currencyBought = item.currencyBought.plus(inventoryItem.total);
 					item.currencyTotal = item.currencyTotal.minus(inventoryItem.total);
 					character.currencyBought = character.currencyBought.plus(inventoryItem.total);
@@ -90,7 +90,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 					if (inventoryItem.id === equipmentId)
 						continue;
 
-					const currencySold = this._initDecimal(this.calculateItemTotal(inventoryItem.quantity, inventoryItem.value)) * 0.5;
+					const currencySold = this._initDecimal(this.calculateItemTotal(correlationId, inventoryItem.quantity, inventoryItem.value)) * 0.5;
 					item.currencyGained = item.currencyGained.plus(item.currencySold);
 					item.currencySold = item.currencySold.plus(inventoryItem.total);
 					item.currencyTotal = item.currencyTotal.plus(currencySold);
@@ -112,11 +112,11 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 			// previousEarned = character.currencyEarned
 			// previousTotal = character.currencyTotal
 
-			this.calculateCharacterScenarioAdditional(character, item);
+			this.calculateCharacterScenarioAdditional(correlationId, character, item);
 		}
 
 		character.experiencePoints = this._toFixed(character.experiencePoints, 1);
-		character.experiencePointsToNextLevel = this.calculateExperienceToNextLevel(character.experiencePoints);
+		character.experiencePointsToNextLevel = this.calculateExperienceToNextLevel(correlationId, character.experiencePoints);
 		character.currencyBought = this._toFixed(character.currencyBought, this._decimalCurrencyFixed());
 		character.currencyEarned = this._toFixed(character.currencyEarned, this._decimalCurrencyFixed());
 		character.currencyIncomeEarned = this._toFixed(character.currencyIncomeEarned, this._decimalCurrencyFixed());
@@ -125,29 +125,29 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		character.currencySold = this._toFixed(character.currencySold, this._decimalCurrencyFixed());
 		character.currencyTotal = this._toFixed(character.currencyTotal, this._decimalCurrencyFixed());
 
-		character.level = this.calculateLevel(character.experiencePoints);
+		character.level = this.calculateLevel(correlationId, character.experiencePoints);
 
-		await this.calculateCharacterAdditional(character, user);
+		await this.calculateCharacterAdditional(correlationId, character, user);
 
-		await this.calculateCharacterCleanup(character, user);
+		await this.calculateCharacterCleanup(correlationId, character, user);
 	}
 
 	// eslint-disable-next-line
-	async calculateCharacterAdditional(character, user) {
+	async calculateCharacterAdditional(correlationId, character, user) {
 	}
 
 	// eslint-disable-next-line
-	async calculateCharacterCleanup(character, user) {
+	async calculateCharacterCleanup(correlationId, character, user) {
 	}
 
-	calculateCharacterCurrencyCurrent(character, value) {
+	calculateCharacterCurrencyCurrent(correlationId, character, value) {
 		if (!character || !character.currencyTotal)
 			return 0;
 
 		return this._toFixed(this._initDecimal(character.currencyTotal).minus(value ? value : 0), this._decimalCurrencyFixed());
 	}
 
-	calculateCharacterCurrencyScenario(scenario, value) {
+	calculateCharacterCurrencyScenario(correlationId, scenario, value) {
 		if (!scenario || !scenario.currencySpendable)
 			return 0;
 
@@ -155,15 +155,15 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 	}
 
 	// eslint-disable-next-line
-	calculateCharacterInit(character) {
+	calculateCharacterInit(correlationId, character) {
 	}
 
 	// eslint-disable-next-line
-	calculateCharacterScenarioAdditional(character, item) {
+	calculateCharacterScenarioAdditional(correlationId, character, item) {
 	}
 
 	// eslint-disable-next-line
-	calcualteCharacterScenarioCurrency(character, item) {
+	calcualteCharacterScenarioCurrency(correlationId, character, item) {
 		if (!item.currencyIncomeEarned)
 			return;
 
@@ -174,42 +174,43 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		item.currencyTotal = item.currencyTotal.plus(item.currencyIncomeEarned);
 	}
 
-	calculateCharacterScenarioExperiencePoints(character, item) {
+	calculateCharacterScenarioExperiencePoints(correlationId, character, item) {
 		return character.experiencePoints.plus(item.experiencePointsEarned);
 	}
 
 	// eslint-disable-next-line
-	calculateCharacterScenarioIgnore(item) {
+	calculateCharacterScenarioIgnore(correlationId, item) {
 		return false;
 	}
 
 	// eslint-disable-next-line
-	calculateCharacterScenarioInitial(item) {
+	calculateCharacterScenarioInitial(correlationId, item) {
 		return false;
 	}
 
-	calculateItemTotal(quantity, value) {
+	// eslint-disable-next-line
+	calculateItemTotal(correlationId, quantity, value) {
 		if (!quantity || !value)
 			return 0;
 
 		return this._initDecimal(quantity) * value;
 	}
 
-	calculateItemTotalFixed(quantity, value) {
-		return this._toFixed(this._initDecimal(this.calculateItemTotal(quantity, value)), this._decimalCurrencyFixed());
+	calculateItemTotalFixed(correlationId, quantity, value) {
+		return this._toFixed(this._initDecimal(this.calculateItemTotal(correlationId, quantity, value)), this._decimalCurrencyFixed());
 	}
 
 	// eslint-disable-next-line
-	calculateLevel(experiencePoints) {
+	calculateLevel(correlationId, experiencePoints) {
 		throw new NotImplementedError();
 	}
 
 	// eslint-disable-next-line
-	calculateScenario(scenario) {
+	calculateScenario(correlationId, scenario) {
 	}
 
 	// eslint-disable-next-line
-	calculateScenarioExperiencePointsEarned(scenario) {
+	calculateScenarioExperiencePointsEarned(correlationId, scenario) {
 		throw new NotImplementedError();
 	}
 
@@ -226,7 +227,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 	}
 
 	// eslint-disable-next-line
-	isAdventureScenario(scenario) {
+	isAdventureScenario(correlationId, scenario) {
 		return false;
 	}
 

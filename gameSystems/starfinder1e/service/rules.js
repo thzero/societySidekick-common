@@ -6,7 +6,8 @@ import BaseRulesGamesSystemsService from '../../services/baseRules';
 class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService {
 	static CurrencyFixed = 2;
 
-	async calculateCharacterAdditional(character) {
+	// eslint-disable-next-line
+	async calculateCharacterAdditional(correlationId, character) {
 		let fameTotalEarned = this._initDecimal(0);
 		let fameTotalSpent = this._initDecimal(0);
 		character.fame.forEach((item) => {
@@ -29,13 +30,15 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		});
 	}
 
-	async calculateCharacterCleanup(character) {
+	// eslint-disable-next-line
+	async calculateCharacterCleanup(correlationId, character) {
 		delete character.class;
 		delete character.factionF;
 		character.reputationEarned = this._toFixed(character.reputationEarned, 1);
 	}
 
-	calculateCharacterInit(character) {
+	// eslint-disable-next-line
+	calculateCharacterInit(correlationId, character) {
 		character.class = null;
 		character.classes = [];
 		character.factionF = null;
@@ -43,7 +46,8 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		character.reputationEarned = this._initDecimal(0);
 	}
 
-	calculateCharacterScenarioAdditional(character, item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioAdditional(correlationId, character, item) {
 		if (item.fameFactionId && (item.fameEarned || item.fameSpent)) {
 			character.factionF = character.fame.find(l => l.id == item.fameFactionId);
 			if (!character.factionF) {
@@ -67,11 +71,11 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 	}
 
 	// eslint-disable-next-line
-	calculateCharacterScenarioCanSelectClass(character, scenario, experiencePointsEarned) {
+	calculateCharacterScenarioCanSelectClass(correlationId, character, scenario, experiencePointsEarned) {
 		if (!character || !character.scenarios)
 			return false;
 
-		if (this.calculateCharacterScenarioInitial(scenario))
+		if (this.calculateCharacterScenarioInitial(correlationId, scenario))
 			return false;
 
 		const order = Number(scenario.order);
@@ -81,18 +85,20 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		let previousScenario = character.scenarios.find(l => l.order === (order - 1));
 		if (previousScenario) {
 			const xp = previousScenario.experiencePoints + scenario.experiencePointsEarned;
-			const level = this.calculateLevel(xp);
+			const level = this.calculateLevel(correlationId, xp);
 			return level > previousScenario.level;
 		}
 
 		return false;
 	}
 
-	calculateCharacterScenarioExperiencePoints(character, item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioExperiencePoints(correlationId, character, item) {
 		return character.experiencePoints.plus(item.experiencePointsEarned);
 	}
 
-	calculateCharacterScenarioIgnore(item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioIgnore(correlationId, item) {
 		if (item.scenarioStatus === SharedConstants.ScenarioStatus.IGNORE)
 			return false;
 		if (item.scenarioStatus === SharedConstants.ScenarioStatus.REPEATED)
@@ -100,29 +106,33 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		return true;
 	}
 
-	calculateCharacterScenarioInitial(item) {
+	// eslint-disable-next-line
+	calculateCharacterScenarioInitial(correlationId, item) {
 		return (item.scenarioAdventure === Starfinder1eSharedConstants.ScenarioAdventures.INITIAL);
 	}
 
-	calculateExperienceToNextLevel(experiencePoints) {
+	// eslint-disable-next-line
+	calculateExperienceToNextLevel(correlationId, experiencePoints) {
 		const remainder = 3 - experiencePoints % 3;
 		return remainder;
 	}
 
-	calculateLevel(experiencePoints) {
+	// eslint-disable-next-line
+	calculateLevel(correlationId, experiencePoints) {
 		const level = Math.floor(experiencePoints / 3);
 		return 1 + level;
 	}
 
-	isAdventureScenario(value) {
+	// eslint-disable-next-line
+	calculateScenario(correlationId, scenario) {
+	}
+
+	// eslint-disable-next-line
+	isAdventureScenario(correlationId, value) {
 		if (!value)
 			return false;
 
 		return value.scenarioAdventure === Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO;
-	}
-
-	// eslint-disable-next-line
-	calculateScenario(scenario) {
 	}
 
 	_decimalFixed() {
