@@ -61,6 +61,7 @@ class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSys
 		return results;
 	}
 
+	// eslint-disable-next-line
 	classes(correlationId, store, hasBlank) {
 		if (!store || !store.state.classes.listing)
 			return [];
