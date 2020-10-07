@@ -1,12 +1,12 @@
-import SharedConstants from '../../../common/constants';
+import SharedConstants from '../../../constants';
 
 import LibraryUtility from '@thzero/library_common/utility';
 
 import NotImplementedError from '@thzero/library_common/errors/notImplemented';
 
-import BaseGameSystemGamesSystemsService from '../../../gameSystems/service/index';
+import SharedGameSystemGamesSystemsService from '../../services/index';
 
-class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsService {
+class SharedGameSystemGamesSystemsService extends SharedGameSystemGamesSystemsService {
 	constructor(il8n) {
 		super();
 

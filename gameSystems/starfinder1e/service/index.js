@@ -3,12 +3,12 @@ import Starfinder1eSharedConstants from '../constants';
 
 import LibraryUtility from '@thzero/library_common/utility';
 
-import BaseGameSystemGamesSystemsService from '../../services/index';
+import SharedGameSystemGamesSystemsService from '../../services/index';
 
 import CharacterBoon from '../data/characterBoon';
 import CharacterScenario from '../data/characterScenario';
 
-class Starfinder1eGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsService {
+class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSystemsService {
 	constructor() {
 		super(SharedConstants.GameSystems.Starfinder1e.friendlyId);
 	}
