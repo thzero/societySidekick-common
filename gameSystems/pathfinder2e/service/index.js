@@ -56,14 +56,15 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return 3;
 	}
 
-	className(value, store) {
+	className(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		return this.classNameById(value.id, store);
+		return this.classNameById(correlationId, value.id, store);
 	}
 
-	classNameById(id, store) {
+	// eslint-disable-next-line
+	classNameById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
@@ -71,19 +72,20 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return results ? results.name : '';
 	}
 
-	classNamesAndLevels(value, store) {
+	classNamesAndLevels(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		const className = this.classNameById(value.classId, store);
+		const className = this.classNameById(correlationId, value.classId, store);
 		if (value.archetypeId) {
-			const archetypeName = this.archetypeNameById(value.archetypeId, store);
+			const archetypeName = this.archetypeNameById(correlationId, value.archetypeId, store);
 			return `${className} ${archetypeName}`;
 		}
 
 		return className;
 	}
 
+	// eslint-disable-next-line
 	classes(correlationId, store, hasBlank) {
 		if (!store || !store.state.classes.listing)
 			return [];
@@ -126,7 +128,7 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		return this.lookupName(correlationId, id, lookups.scenarioEvents);
 	}
 
-	scenarioName(item) {
+	scenarioName(correlationId, item) {
 		if (!item || !item.type)
 			return '';
 

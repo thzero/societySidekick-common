@@ -17,7 +17,8 @@ class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSys
 		return this._boons(correlationId, store, hasBlank, SharedConstants.GameSystems.Starfinder1e.id);
 	}
 
-	calculateExperiencePointLevel(experiencePoints) {
+	// eslint-disable-next-line
+	calculateExperiencePointLevel(correlationId, experiencePoints) {
 		if (experiencePoints <=1)
 			return 1;
 		if (experiencePoints <= 2)
@@ -25,14 +26,15 @@ class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSys
 		return 3;
 	}
 
-	className(value, store) {
+	className(correlationId, value, store) {
 		if (!store || !value)
 			return '';
 
-		return this.classNameById(value.id, store);
+		return this.classNameById(correlationId, value.id, store);
 	}
 
-	classNameById(id, store) {
+	// eslint-disable-next-line
+	classNameById(correlationId, id, store) {
 		if (!store || !id)
 			return '';
 
@@ -40,14 +42,14 @@ class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSys
 		return results ? results.name : '';
 	}
 
-	classNamesAndLevels(value, store) {
+	classNamesAndLevels(correlationId, value, store) {
 		if (!store || !value || !value.classes)
 			return '';
 
 		let classNames = [];
 		let temp;
 		for (const clazz of value.classes) {
-			temp = this.classNameById(clazz.id, store);
+			temp = this.classNameById(correlationId, clazz.id, store);
 			classNames.push(`${temp} / ${clazz.level}`);
 		}
 
@@ -98,7 +100,7 @@ class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSys
 		return this.lookupName(correlationId, id, lookups.scenarioAdventures);
 	}
 
-	scenarioName(item) {
+	scenarioName(correlationId, item) {
 		if (!item || !item.type)
 			return '';
 
