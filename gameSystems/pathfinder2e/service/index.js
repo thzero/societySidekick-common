@@ -6,7 +6,7 @@ import NotImplementedError from '@thzero/library_common/errors/notImplemented';
 
 import SharedGameSystemGamesSystemsService from '../../services/index';
 
-class SharedGameSystemGamesSystemsService extends SharedGameSystemGamesSystemsService {
+class Pathfinder2eeGameSystemGamesSystemsService extends SharedGameSystemGamesSystemsService {
 	constructor(il8n) {
 		super();
 
@@ -283,4 +283,4 @@ class SharedGameSystemGamesSystemsService extends SharedGameSystemGamesSystemsSe
 	}
 }
 
-export default SharedGameSystemGamesSystemsService;
+export default Pathfinder2eeGameSystemGamesSystemsService;
