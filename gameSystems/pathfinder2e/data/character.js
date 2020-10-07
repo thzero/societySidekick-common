@@ -11,7 +11,7 @@ class Pathfinder2eCharacterData extends CharacterData {
 		super();
 
 		this.achievementPoints = DecimalUtility.init(0);
-		this.archetypeId = null;
+		this.archetypeIds = [];
 		this.boonAdvancedId = null;
 		this.boonFactionId = null;
 		this.boonGeneric1Id = null;
