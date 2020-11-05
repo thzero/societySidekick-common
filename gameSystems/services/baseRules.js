@@ -17,7 +17,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 
 	async calculateCharacter(correlationId, character, user, equipmentId) {
 		if (!character)
-			return;
+			return this._error('BaseRulesGamesSystemService', 'calculateCharacter', 'Invalid character.', null, null, null, correlationId);
 
 		// // eslint-disable-next-line
 		// let previousGained = this._initDecimal(0)
@@ -130,6 +130,8 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		await this.calculateCharacterAdditional(correlationId, character, user);
 
 		await this.calculateCharacterCleanup(correlationId, character, user);
+
+		return this._success(correlationId);
 	}
 
 	// eslint-disable-next-line
