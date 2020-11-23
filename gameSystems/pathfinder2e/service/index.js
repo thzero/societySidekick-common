@@ -77,7 +77,10 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 			return '';
 
 		const className = this.classNameById(correlationId, value.classId, store);
-		if (value.archetypeIds) {
+		if (!String.isNullOrEmpty(className))
+			return className;
+
+		if (value.archetypeIds && (value.archetypeIds.length > 0)) {
 			let archetypeName;
 			let archetypeNames = [];
 			value.archetypeIds.forEach((item) => {
