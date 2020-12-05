@@ -16,7 +16,6 @@ class Starfinder1eCharacterScenario extends CharacterScenario {
 		this.reputationEarned = 2;
 		this.reputationSpent = null;
 		this.scenarioAdvancementSpeed = Starfinder1eSharedConstants.ScenarioAdvancementSpeeds.STANDARD;
-		this.scenarioAdventure = Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO;
 	}
 }
 

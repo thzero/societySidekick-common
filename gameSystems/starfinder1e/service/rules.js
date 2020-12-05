@@ -108,7 +108,7 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 	// eslint-disable-next-line
 	calculateCharacterScenarioInitial(correlationId, item) {
-		return (item.scenarioAdventure === Starfinder1eSharedConstants.ScenarioAdventures.INITIAL);
+		return ((item.scenario ? item.scenario.type : null) === Starfinder1eSharedConstants.ScenarioAdventures.INITIAL);
 	}
 
 	// eslint-disable-next-line
@@ -132,7 +132,7 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!value)
 			return false;
 
-		return value.scenarioAdventure === Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO;
+		return value.scenario.type === Starfinder1eSharedConstants.ScenarioAdventures.SCENARIO;
 	}
 
 	_decimalFixed() {

@@ -32,7 +32,6 @@ class Pathfinder2eCharacterData extends CharacterData {
 		const scenario = new Pathfinder2eCharacterScenario();
 		scenario.currencyEarned = 15;
 		scenario.scenarioAdvancementSpeed = Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds.INITIAL;
-		scenario.scenarioAdventure = Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL;
 		scenario.scenarioEvent = Pathfinder2eSharedConstants.ScenarioEvents.INITIAL;
 		scenario.scenarioId = Pathfinder2eSharedConstants.ScenarionInitialId;
 		scenario.gameSystemId = SharedConstants.GameSystems.Pathfinder2e.id;

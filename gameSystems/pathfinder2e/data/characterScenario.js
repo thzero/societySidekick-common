@@ -20,7 +20,6 @@ class Pathfinder2eCharacterScenario extends CharacterScenario {
 		this.reputationAdditionalFactionId = null;
 		this.reputationAdditionalEarned = null;
 		this.scenarioAdvancementSpeed = Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds.STANDARD;
-		this.scenarioAdventure = Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO;
 		this.scenarioEvent = Pathfinder2eSharedConstants.ScenarioEvents.STANDARD;
 	}
 }

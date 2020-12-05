@@ -119,7 +119,7 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 	// eslint-disable-next-line
 	calculateCharacterScenarioInitial(correlationId, item) {
-		return (item.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
+		return ((item.scenario ? item.scenario.type : null) === Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
 	}
 
 	// eslint-disable-next-line
@@ -146,8 +146,10 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return 0;
 
+		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
+
 		const value = Pathfinder2eSharedConstants.AdvancementPoints.find(l =>
-			l.adventure === scenario.scenarioAdventure &&
+			l.adventure === scenarionType &&
 			l.participant === scenario.scenarioParticipant &&
 			l.event === scenario.scenarioEvent);
 
@@ -159,18 +161,20 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return 0;
 
+		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
+
 		let value = 0;
-		if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
 			value = 0;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
-		value = 24;
-	else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
+			value = 24;
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
 			value = 0;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 2;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 8;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
 			value = 0;
 
 		if (scenario.scenarioAdvancementSpeed === Pathfinder2eSharedConstants.ScenarioAdvancementSpeeds.SLOW)
@@ -184,17 +188,21 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return 0;
 
+		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
+
 		let value = 0;
-		if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 1;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
 			value = 0;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 12;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
 			value = 12;
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+			value = scenario.experiencePointsEarned;
 
 		// Not doing this here because this is usually already taken into account when
 		// the paper scenario sheet is created
@@ -209,17 +217,21 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return 0;
 
+		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
+
 		let value = 0;
-		if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 1;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
 			value = 0;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 12;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
 			value = 12;
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+			value = null;
 
 		// Not doing this here because this is usually already taken into account when
 		// the paper scenario sheet is created
@@ -234,16 +246,18 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return 0;
 
+		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
+
 		let value = 0;
-		if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 1;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE)
 			value = 0;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 12;
-		else if (scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ACHIEVEMENT_POINTS)
 			value = 12;
 
 		// Not doing this here because this is usually already taken into account when
@@ -259,9 +273,11 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return false;
 
+		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
+
 		return !(
-			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE) ||
-			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+			(scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE) ||
+			(scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
 		);
 	}
 
@@ -270,9 +286,11 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return false;
 
+		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
+
 		return !(
-			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE) ||
-			(scenario.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
+			(scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE) ||
+			(scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
 		);
 	}
 
@@ -281,7 +299,7 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		if (!scenario)
 			return false;
 
-		return scenario.scenarioAdventure !== Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE;
+		return (scenario.scenario ? scenario.scenario.type : null) !== Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE;
 	}
 
 	_decimalFixed() {
