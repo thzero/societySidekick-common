@@ -119,7 +119,7 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 	// eslint-disable-next-line
 	calculateCharacterScenarioInitial(correlationId, item) {
-		return ((item.scenario ? item.scenario.type : null) === Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
+		return (item.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
 	}
 
 	// eslint-disable-next-line
