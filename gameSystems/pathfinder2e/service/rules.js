@@ -138,7 +138,7 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		scenario.achievementPointsEarned = this.calculateScenarioAchievementPointsEarned(correlationId, scenario);
 		scenario.downtimePointsEarned = this.calculateScenarioDowntimePointsEarned(correlationId, scenario);
 		scenario.experiencePointsEarned = this.calculateScenarioExperiencePointsEarned(correlationId, scenario);
-		scenario.fameEarned = this.calculateScenarioFameEarned(scenario);
+		scenario.fameEarned = this.calculateScenarioFameEarned(correlationId, scenario);
 	}
 
 	// eslint-disable-next-line
