@@ -3,8 +3,6 @@ import GameSystemData from './gameSystem';
 class ClassData extends GameSystemData {
 	constructor() {
 		super();
-
-		this.level = null;
 	}
 
 	map(requested) {
@@ -12,8 +10,6 @@ class ClassData extends GameSystemData {
 
 		if (!requested)
 			return;
-
-		this.level = requested.level;
 	}
 }
 
