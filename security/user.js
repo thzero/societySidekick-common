@@ -10,7 +10,7 @@ export default {
 		},
 		admin: {
 			can: [ ],
-			inherits: ['users']
+			inherits: ['user']
 		}
 	}
 };
