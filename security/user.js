@@ -1,6 +1,6 @@
 export default {
 	options: {
-		users: {
+		user: {
 			can: [ // list of allowed operations
 				'character',
 				'character:edit',
