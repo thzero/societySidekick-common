@@ -9,6 +9,7 @@ class ScenarioData extends GameSystemData {
 		this.repeatable = false;
 		this.scenario = null;
 		this.season = null;
+		this.successResults = [];
 		this.type = SharedConstants.ScenarioTypes.INITIAL;
 	}
 
@@ -21,6 +22,7 @@ class ScenarioData extends GameSystemData {
 		this.repeatable = requested.repeatable;
 		this.scenario = requested.scenario;
 		this.season = requested.season;
+		this.successResults = requested.successResults;
 		this.type = requested.type;
 	}
 }

@@ -18,6 +18,7 @@ class CharacterScenario {
 		this.scenarioId = null;
 		this.scenarioParticipant = SharedConstants.ScenarioParticipants.PLAYER;
 		this.scenarioStatus = SharedConstants.ScenarioStatus.INITIAL;
+		this.scenarioSuccessResults = {};
 		this.status = SharedConstants.CharactersStatus.ACTIVE;
 		this.timestamp = null;
 	}
