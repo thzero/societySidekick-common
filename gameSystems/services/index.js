@@ -191,6 +191,9 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 
 		let description = LibraryUtility.cloneDeep(item.description);
 		if (!String.isNullOrEmpty(description) && (replaces.length > 0)) {
+			let separator = value.successResultsSeparator;
+			if (String.isNullOrEmpty(separator))
+				separator = ' /';
 			description = description.replace('[results]', replaces.join(value.successResultsSeparator + ' '));
 
 			if (replaces[0])
