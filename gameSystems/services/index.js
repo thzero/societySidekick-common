@@ -199,14 +199,11 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 				separator = ' /';
 			description = description.replace('[results]', replaces.join(separator + ' '));
 
-			if (replaces[0])
-				description = description.replace('[results1]', replaces[0]);
-
-			if (replaces[1])
-				description = description.replace('[results2]', replaces[1]);
-
-			if (replaces[2])
-				description = description.replace('[results3]', replaces[2]);
+			let temp;
+			for (let i = 0; i < replaces.length; i++) {
+				temp = replaces[i];
+				description = description.replace('[results' + (i+1) + ']', temp);
+			}
 		}
 
 		return description;
