@@ -175,15 +175,18 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 			return '';
 
 		let replaces = [];
-		if (item.successResults && Array.isArray(item.successResults) && value && value.scenarioSuccessResults && Array.isArray(value.scenarioSuccessResults)) {
+		if (item.successResults && Array.isArray(item.successResults)) {
 			let checked;
 			let temp2;
 			for (const temp of item.successResults) {
 				if (String.isNullOrEmpty(temp.description))
 					continue;
 
-				temp2 = value.scenarioSuccessResults.find(l => l.id === temp.id);
-				checked = temp2 ? temp2.checked : false;
+				temp2 = false;
+				if (value && value.scenarioSuccessResults && Array.isArray(value.scenarioSuccessResults)) {
+					temp2 = value.scenarioSuccessResults.find(l => l.id === temp.id);
+					checked = temp2 ? temp2.checked : false;
+				}
 
 				replaces.push('[' + (checked ? 'x' : '&nbsp;') + '] ' + temp.description);
 			}
@@ -191,10 +194,10 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 
 		let description = LibraryUtility.cloneDeep(item.description);
 		if (!String.isNullOrEmpty(description) && (replaces.length > 0)) {
-			let separator = value.successResultsSeparator;
+			let separator = item.successResultsSeparator;
 			if (String.isNullOrEmpty(separator))
 				separator = ' /';
-			description = description.replace('[results]', replaces.join(value.successResultsSeparator + ' '));
+			description = description.replace('[results]', replaces.join(separator + ' '));
 
 			if (replaces[0])
 				description = description.replace('[results1]', replaces[0]);
