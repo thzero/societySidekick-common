@@ -190,8 +190,18 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		}
 
 		let description = LibraryUtility.cloneDeep(item.description);
-		if (!String.isNullOrEmpty(description) && (replaces.length > 0))
-			description = description.replace('[results]', replaces.join(' / '));
+		if (!String.isNullOrEmpty(description) && (replaces.length > 0)) {
+			description = description.replace('[results]', replaces.join(value.successResultsSeparator + ' '));
+
+			if (replaces[0])
+				description = description.replace('[results1]', replaces[0]);
+
+			if (replaces[1])
+				description = description.replace('[results2]', replaces[1]);
+
+			if (replaces[2])
+				description = description.replace('[results3]', replaces[2]);
+		}
 
 		return description;
 	}
