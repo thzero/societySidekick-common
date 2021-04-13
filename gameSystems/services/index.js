@@ -175,7 +175,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 			return '';
 
 		let replaces = [];
-		if (item.successResults && Array.isArray(item.successResults) && value.scenarioSuccessResults && Array.isArray(value.scenarioSuccessResults)) {
+		if (item.successResults && Array.isArray(item.successResults) && value && value.scenarioSuccessResults && Array.isArray(value.scenarioSuccessResults)) {
 			let checked;
 			let temp2;
 			for (const temp of item.successResults) {
