@@ -188,7 +188,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 					checked = temp2 ? temp2.checked : false;
 				}
 
-				replaces.push('[' + (checked ? 'x' : '&nbsp;') + '] ' + temp.description);
+				replaces.push('[' + (checked ? '***x***' : '&nbsp;') + '] ' + temp.description);
 			}
 		}
 
