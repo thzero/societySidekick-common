@@ -75,15 +75,15 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!value || !store)
 			return '';
 
-		return this.determineScenarioDescriptionById(correlationId, value.scenarioId, store);
+		return this.determineScenarioDescriptionById(correlationId, value.scenarioId, store, value);
 	}
 
-	determineScenarioDescriptionById(correlationId, id, store) {
+	determineScenarioDescriptionById(correlationId, id, store, value) {
 		if (!id || !store)
 			return '';
 
 		const results = store.getters.getScenario(id);
-		return this.scenarioDescription(correlationId, results);
+		return this.scenarioDescription(correlationId, results, value);
 	}
 
 	determineScenarioName(correlationId, value, store) {
@@ -170,11 +170,30 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 	}
 
 	// eslint-disable-next-line
-	scenarioDescription(correlationId, item) {
+	scenarioDescription(correlationId, item, value) {
 		if (!item)
 			return '';
 
-		return item.description;
+		let replaces = [];
+		if (item.successResults && Array.isArray(item.successResults) && value.scenarioSuccessResults && Array.isArray(value.scenarioSuccessResults)) {
+			let checked;
+			let temp2;
+			for (const temp of item.successResults) {
+				if (String.isNullOrEmpty(temp.description))
+					continue;
+
+				temp2 = value.scenarioSuccessResults.find(l => l.id === temp.id);
+				checked = temp2 ? temp2.checked : false;
+
+				replaces.push('[' + (checked ? 'x' : '&nbsp;') + '] ' + temp.description);
+			}
+		}
+
+		let description = LibraryUtility.cloneDeep(item.description);
+		if (!String.isNullOrEmpty(description) && (replaces.length > 0))
+			description = description.replace('[results]', replaces.join(' / '));
+
+		return description;
 	}
 
 	scenarioLookupParticipantName(correlationId, id, lookups) {
