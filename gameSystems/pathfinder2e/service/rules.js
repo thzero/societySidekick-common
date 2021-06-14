@@ -168,6 +168,8 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 			value = 0;
 		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.ADVENTURE_PATH)
 			value = 24;
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.BOUNTY)
+			value = 2;
 		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.MODULE)
 			value = 0;
 		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
@@ -191,7 +193,9 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
 
 		let value = 0;
-		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.BOUNTY)
+			value = 1;
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 1;
 		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
@@ -220,7 +224,9 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
 
 		let value = 0;
-		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.BOUNTY)
+			value = 1;
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 1;
 		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;
@@ -249,7 +255,9 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 		let scenarionType = (scenario.scenario ? scenario.scenario.type : null);
 
 		let value = 0;
-		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
+		if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.BOUNTY)
+			value = 1;
+		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST)
 			value = 1;
 		else if (scenarionType === Pathfinder2eSharedConstants.ScenarioAdventures.SCENARIO)
 			value = 4;

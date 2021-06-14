@@ -157,6 +157,12 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 			return item.name;
 		}
 
+		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.BOUNTY.toLowerCase()) {
+			if (item.scenario)
+				return '#' + item.scenario + ' ' + item.name;
+			return item.name;
+		}
+
 		if (item.type.toLowerCase() === Pathfinder2eSharedConstants.ScenarioAdventures.QUEST.toLowerCase()) {
 			if (item.scenario)
 				return '#' + item.scenario + ' ' + item.name;

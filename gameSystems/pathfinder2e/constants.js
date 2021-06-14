@@ -60,6 +60,7 @@ const Constants = {
 	ScenarioAdventures: {
 		ADVENTURE: 'adventure',
 		ADVENTURE_PATH: 'adventurePath',
+		BOUNTY: 'bounty',
 		MODULE: 'module',
 		QUEST: 'quest',
 		SCENARIO: 'scenario',
@@ -183,6 +184,54 @@ Constants.AdvancementPoints = [
 		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
 		event: Constants.ScenarioEvents.PREMIER_PLUS,
 		earned: 36
+	},
+	{
+		adventure: Constants.ScenarioAdventures.BOUNTY,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 1
+	},
+	{
+		adventure: Constants.ScenarioAdventures.BOUNTY,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 1
+	},
+	{
+		adventure: Constants.ScenarioAdventures.BOUNTY,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 1
+	},
+	{
+		adventure: Constants.ScenarioAdventures.BOUNTY,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 1.5
+	},
+	{
+		adventure: Constants.ScenarioAdventures.BOUNTY,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 2
+	},
+	{
+		adventure: Constants.ScenarioAdventures.BOUNTY,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER,
+		earned: 2.5
+	},
+	{
+		adventure: Constants.ScenarioAdventures.BOUNTY,
+		participant: SharedConstants.ScenarioParticipants.GAMEMASTER,
+		event: Constants.ScenarioEvents.PREMIER_PLUS,
+		earned: 3
+	},
+	{
+		adventure: Constants.ScenarioAdventures.QUEST,
+		participant: SharedConstants.ScenarioParticipants.PLAYER,
+		event: Constants.ScenarioEvents.STANDARD,
+		earned: 1
 	},
 	{
 		adventure: Constants.ScenarioAdventures.QUEST,
