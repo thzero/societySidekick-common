@@ -39,6 +39,10 @@ const Constants = {
 			friendlyId: 'starfinder1e'
 		}
 	},
+	ListingTypes: {
+		Grid: 'grid',
+		List: 'list'
+	},
 	NewsTypes: {
 		ADMIN: 'admin',
 		MAIN: 'main'
