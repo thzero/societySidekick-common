@@ -51,6 +51,11 @@ const Constants = {
 		Admin: 'admin',
 		User: 'user'
 	},
+	ScenarioListingTypes: {
+		All: 'all',
+		NotPlayed: 'notPlayed',
+		Played: 'played'
+	},
 	ScenarioParticipants: {
 		INITIAL: 'initial',
 		PLAYER: 'player',
