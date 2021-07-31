@@ -47,6 +47,17 @@ const Constants = {
 		ADMIN: 'admin',
 		MAIN: 'main'
 	},
+	OrganizedPlay: {
+		DungeonsAndDragonsAdventureLeague: {
+			id: 'tWJz3N1bF2MymKWWZBAdwD',
+			friendlyId: 'ddadventureleague'
+		},
+		Paizo:
+		{
+			id: 'oL5xDzRvsc88CRpjzn4bWX',
+			friendlyId: 'paizo'
+		}
+	},
 	Roles: {
 		Admin: 'admin',
 		User: 'user'
