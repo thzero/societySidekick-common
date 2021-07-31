@@ -15,7 +15,6 @@ class GameSystemData extends NamedData {
 
 		this.description = requested.description;
 		this.gameSystemId = requested.gameSystemId;
-		this.name = requested.name;
 		this.url = requested.url;
 	}
 }
