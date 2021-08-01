@@ -1,4 +1,4 @@
-import GameSystemData from './baseGameSystem';
+import BaseGameSystemData from './baseGameSystem';
 
 class BoonData extends BaseGameSystemData {
 	constructor() {

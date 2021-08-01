@@ -4,7 +4,7 @@ class GameSystemData extends NamedData {
 	constructor() {
 		super();
 
-		this.active = null;
+		this.active = true;
 		this.description = null;
 		this.family = null;
 		this.friendlyId = null;
