@@ -1,8 +1,8 @@
 import SharedConstants from '../constants';
 
-import GameSystemData from './gameSystem';
+import BaseGameSystemData from './baseGameSystem';
 
-class ScenarioData extends GameSystemData {
+class ScenarioData extends BaseGameSystemData {
 	constructor() {
 		super();
 

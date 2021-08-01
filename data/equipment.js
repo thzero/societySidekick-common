@@ -1,6 +1,6 @@
-import GameSystemData from './gameSystem';
+import BaseGameSystemData from './baseGameSystem';
 
-class EquipmentData extends GameSystemData {
+class EquipmentData extends BaseGameSystemData {
 	constructor() {
 		super();
 
