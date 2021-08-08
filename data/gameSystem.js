@@ -15,6 +15,8 @@ class GameSystemData extends NamedData {
 	}
 
 	map(requested) {
+		super.map(requested);
+
 		if (!requested)
 			return;
 
