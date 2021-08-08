@@ -11,6 +11,8 @@ class OrganizedPlayData extends NamedData {
 	}
 
 	map(requested) {
+		super.map(requested);
+
 		if (!requested)
 			return;
 
