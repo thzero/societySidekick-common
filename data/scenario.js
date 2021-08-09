@@ -6,6 +6,7 @@ class ScenarioData extends BaseGameSystemData {
 	constructor() {
 		super();
 
+		this.description = null;
 		this.repeatable = false;
 		this.scenario = null;
 		this.season = null;
@@ -20,6 +21,7 @@ class ScenarioData extends BaseGameSystemData {
 		if (!requested)
 			return;
 
+		this.description = requested.description;
 		this.repeatable = requested.repeatable;
 		this.scenario = requested.scenario;
 		this.season = requested.season;
