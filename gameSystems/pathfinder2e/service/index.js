@@ -76,9 +76,7 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 		if (!store || !value)
 			return '';
 
-		const className = this.classNameById(correlationId, value.classId, store);
-		if (!String.isNullOrEmpty(className))
-			return className;
+		let className = this.classNameById(correlationId, value.classId, store);
 
 		if (value.archetypeIds && (value.archetypeIds.length > 0)) {
 			let archetypeName;
@@ -88,13 +86,10 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 				if (!String.isNullOrEmpty(archetypeName))
 					archetypeNames.push(archetypeName);
 			});
-			const names = [];
-			names.push(className);
-			names.push(archetypeNames.join(', '));
-			return names.join(' - ');
+			className = className + ' (' + archetypeNames.join(', ') + ')';
 		}
 
-		return className;
+		return className + ' / ' + value.level;
 	}
 
 	// eslint-disable-next-line
