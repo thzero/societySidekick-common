@@ -38,7 +38,7 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 			let achievementPoints = this._initDecimal(character.achievementPoints);
 			const response = await this._serviceCharacters.listing(null, user, gameSystemId);
-			if (response.success) {
+			if (this._hasSucceeded(response)) {
 				for(const temp of response.results.data) {
 					if (temp.id === character.id)
 						continue;
