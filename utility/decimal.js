@@ -1,4 +1,5 @@
-import { Decimal } from 'decimal.js-light';
+import pkg from 'decimal.js-light';
+const { Decimal } = pkg;
 
 class Utility {
 	static clean(value, places) {
