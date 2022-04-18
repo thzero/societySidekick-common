@@ -3,6 +3,8 @@ import BaseGameSystemData from './baseGameSystem';
 class FactionData extends BaseGameSystemData {
 	constructor() {
 		super();
+
+		this.description = null;
 	}
 
 	map(requested) {
@@ -10,6 +12,8 @@ class FactionData extends BaseGameSystemData {
 
 		if (!requested)
 			return;
+
+		this.description = requested.description;
 	}
 }
 
