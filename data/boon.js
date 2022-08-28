@@ -1,4 +1,4 @@
-import BaseGameSystemData from './baseGameSystem';
+import BaseGameSystemData from './baseGameSystem.js';
 
 class BoonData extends BaseGameSystemData {
 	constructor() {

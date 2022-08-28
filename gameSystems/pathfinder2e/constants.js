@@ -1,4 +1,4 @@
-import SharedConstants from '../../constants';
+import SharedConstants from '../../constants.js';
 
 const Constants = {
 	BoonTypes: {

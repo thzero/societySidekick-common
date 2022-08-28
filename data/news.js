@@ -1,6 +1,6 @@
-import SharedConstants from '../constants';
+import SharedConstants from '../constants.js';
 
-import BaseNewsData from '@thzero/library_common/data/baseNews';
+import BaseNewsData from '@thzero/library_common/data/baseNews.js';
 
 class NewsData extends BaseNewsData {
 	constructor() {

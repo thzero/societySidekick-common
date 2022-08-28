@@ -1,9 +1,9 @@
-import SharedConstants from '../../../constants';
-import Pathfinder2eSharedConstants from '../constants';
+import SharedConstants from '../../../constants.js';
+import Pathfinder2eSharedConstants from '../constants.js';
 
-import SettingsGameSystem from '../../../data/settingsGameSystem';
+import SettingsGameSystem from '../../../data/settingsGameSystem.js';
 
-import BaseRulesGamesSystemsService from '../../services/baseRules';
+import BaseRulesGamesSystemsService from '../../services/baseRules.js';
 
 class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService {
 	static GoldFixed = 2;

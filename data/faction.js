@@ -1,4 +1,4 @@
-import BaseGameSystemData from './baseGameSystem';
+import BaseGameSystemData from './baseGameSystem.js';
 
 class FactionData extends BaseGameSystemData {
 	constructor() {

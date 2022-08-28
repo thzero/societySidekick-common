@@ -1,8 +1,8 @@
-import SharedConstants from '../../../constants';
-import Starfinder1eSharedConstants from '../constants';
+import SharedConstants from '../../../constants.js';
+import Starfinder1eSharedConstants from '../constants.js';
 
-import CharacterData from '../../../data/character';
-import Starfinder1eCharacterScenario from './characterScenario';
+import CharacterData from '../../../data/character.js';
+import Starfinder1eCharacterScenario from './characterScenario.js';
 
 class Starfinder1eCharacterData extends CharacterData {
 	constructor() {

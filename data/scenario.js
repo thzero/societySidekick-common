@@ -1,6 +1,6 @@
-import SharedConstants from '../constants';
+import SharedConstants from '../constants.js';
 
-import BaseGameSystemData from './baseGameSystem';
+import BaseGameSystemData from './baseGameSystem.js';
 
 class ScenarioData extends BaseGameSystemData {
 	constructor() {

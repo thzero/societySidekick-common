@@ -1,7 +1,7 @@
-import SharedConstants from '../../../constants';
-import Starfinder1eSharedConstants from '../constants';
+import SharedConstants from '../../../constants.js';
+import Starfinder1eSharedConstants from '../constants.js';
 
-import BaseRulesGamesSystemsService from '../../services/baseRules';
+import BaseRulesGamesSystemsService from '../../services/baseRules.js';
 
 class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService {
 	static CurrencyFixed = 2;

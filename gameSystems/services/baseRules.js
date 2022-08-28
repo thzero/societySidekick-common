@@ -1,12 +1,12 @@
-import Constants from '../../../constants';
-import SharedConstants from '../../constants';
+import Constants from '../../../constants.js';
+import SharedConstants from '../../constants.js';
 
-import Utility from '@thzero/library_common/utility';
-import DecimalUtility from '../../utility/decimal';
+import Utility from '@thzero/library_common/utility/index.js';
+import DecimalUtility from '../../utility/decimal.js';
 
-import NotImplementedError from '@thzero/library_common/errors/notImplemented';
+import NotImplementedError from '@thzero/library_common/errors/notImplemented.js';
 
-import BaseGameSystemsService from '../../../gameSystems/service/index';
+import BaseGameSystemsService from '../../../gameSystems/service/index.js';
 
 class BaseRulesGamesSystemService extends BaseGameSystemsService {
 	async init(injector) {

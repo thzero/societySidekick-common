@@ -1,10 +1,10 @@
-import SharedConstants from '../../../constants';
-import Pathfinder2eSharedConstants from '../constants';
+import SharedConstants from '../../../constants.js';
+import Pathfinder2eSharedConstants from '../constants.js';
 
-import DecimalUtility from '../../../utility/decimal';
+import DecimalUtility from '../../../utility/decimal.js';
 
-import CharacterData from '../../../data/character';
-import Pathfinder2eCharacterScenario from './characterScenario';
+import CharacterData from '../../../data/character.js';
+import Pathfinder2eCharacterScenario from './characterScenario.js';
 
 class Pathfinder2eCharacterData extends CharacterData {
 	constructor() {

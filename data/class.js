@@ -1,4 +1,4 @@
-import BaseGameSystemData from './baseGameSystem';
+import BaseGameSystemData from './baseGameSystem.js';
 
 class ClassData extends BaseGameSystemData {
 	constructor() {

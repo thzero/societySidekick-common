@@ -1,6 +1,6 @@
-import Starfinder1eSharedConstants from '../constants';
+import Starfinder1eSharedConstants from '../constants.js';
 
-import CharacterScenario from '../../../data/characterScenario';
+import CharacterScenario from '../../../data/characterScenario.js';
 
 class Starfinder1eCharacterScenario extends CharacterScenario {
 	constructor() {
