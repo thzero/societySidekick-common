@@ -1,12 +1,12 @@
-import SharedConstants from '../../../constants';
-import Pathfinder2eSharedConstants from '../constants';
+import SharedConstants from '../../../constants.js';
+import Pathfinder2eSharedConstants from '../constants.js';
 
 import LibraryUtility from '@thzero/library_common/utility';
 
-import BaseGameSystemGamesSystemsService from '../../services/index';
+import BaseGameSystemGamesSystemsService from '../../services/index.js';
 
-import CharacterBoon from '../data/characterBoon';
-import CharacterScenario from '../data/characterScenario';
+import CharacterBoon from '../data/characterBoon.js';
+import CharacterScenario from '../data/characterScenario.js';
 
 class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsService {
 	constructor() {

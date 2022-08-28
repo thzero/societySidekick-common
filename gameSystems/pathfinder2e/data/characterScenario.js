@@ -1,6 +1,6 @@
-import Pathfinder2eSharedConstants from '../constants';
+import Pathfinder2eSharedConstants from '../constants.js';
 
-import CharacterScenario from '../../../data/characterScenario';
+import CharacterScenario from '../../../data/characterScenario.js';
 
 class Pathfinder2eCharacterScenario extends CharacterScenario {
 	constructor() {

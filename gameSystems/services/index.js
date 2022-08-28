@@ -1,10 +1,10 @@
-import SharedConstants from '../../../common/constants';
+import SharedConstants from '../../../common/constants.js';
 
 import LibraryUtility from '@thzero/library_common/utility';
 
-import NotImplementedError from '@thzero/library_common/errors/notImplemented';
+import NotImplementedError from '@thzero/library_common/errors/notImplemented.js';
 
-import BaseGameSystemGamesSystemsService from '../../../gameSystems/service/index';
+import BaseGameSystemGamesSystemsService from '../../../gameSystems/service/index.js';
 
 class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsService {
 	constructor(il8n) {

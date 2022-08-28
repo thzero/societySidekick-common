@@ -1,6 +1,6 @@
-import BaseUserData from '@thzero/library_common/data/baseUser';
+import BaseUserData from '@thzero/library_common/data/baseUser.js';
 
-import UserSettings from './settingsUser';
+import UserSettings from './settingsUser.js';
 
 class UserData extends BaseUserData {
 	constructor() {

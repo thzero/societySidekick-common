@@ -1,4 +1,4 @@
-import CharacterInventory from '../../../data/characterInventory';
+import CharacterInventory from '../../../data/characterInventory.js';
 
 class Starfinder1eCharacterInventory extends CharacterInventory {
 	constructor() {

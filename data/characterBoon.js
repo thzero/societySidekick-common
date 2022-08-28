@@ -1,4 +1,4 @@
-import LibraryUtility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility/index.js';
 
 class CharacterBoon {
 	constructor() {

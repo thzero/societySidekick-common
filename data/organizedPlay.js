@@ -1,4 +1,4 @@
-import NamedData from '@thzero/library_common/data/named';
+import NamedData from '@thzero/library_common/data/named.js';
 
 class OrganizedPlayData extends NamedData {
 	constructor() {

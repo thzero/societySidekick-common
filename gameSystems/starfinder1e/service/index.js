@@ -1,12 +1,12 @@
-import SharedConstants from '../../../constants';
-import Starfinder1eSharedConstants from '../constants';
+import SharedConstants from '../../../constants.js';
+import Starfinder1eSharedConstants from '../constants.js';
 
 import LibraryUtility from '@thzero/library_common/utility';
 
-import SharedGameSystemGamesSystemsService from '../../services/index';
+import SharedGameSystemGamesSystemsService from '../../services/index.js';
 
-import CharacterBoon from '../data/characterBoon';
-import CharacterScenario from '../data/characterScenario';
+import CharacterBoon from '../data/characterBoon.js';
+import CharacterScenario from '../data/characterScenario.js';
 
 class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSystemsService {
 	constructor() {

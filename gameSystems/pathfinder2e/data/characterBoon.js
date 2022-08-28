@@ -1,4 +1,4 @@
-import CharacterBoon from '../../../data/characterBoon';
+import CharacterBoon from '../../../data/characterBoon.js';
 
 class Pathfinder2eCharacterBoon extends CharacterBoon {
 	constructor() {

@@ -1,6 +1,6 @@
-import SharedConstants from '../constants';
+import SharedConstants from '../constants.js';
 
-import LibraryUtility from '@thzero/library_common/utility';
+import LibraryUtility from '@thzero/library_common/utility/index.js';
 
 class CharacterScenario {
 	constructor() {
