@@ -32,10 +32,10 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 
 	// eslint-disable-next-line
 	archetypes(correlationId, store, hasBlank) {
-		if (!store || !store.state.classes.listing)
+		if (!store || !store.classes.listing)
 			return [];
 
-		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
+		let results = store.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
 		results = LibraryUtility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.ARCHETYPE), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
@@ -94,10 +94,10 @@ class Pathfinder2eGameSystemGamesSystemsService extends BaseGameSystemGamesSyste
 
 	// eslint-disable-next-line
 	classes(correlationId, store, hasBlank) {
-		if (!store || !store.state.classes.listing)
+		if (!store || !store.classes.listing)
 			return [];
 
-		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
+		let results = store.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Pathfinder2e.id);
 		results = LibraryUtility.sortByName(results.filter(l => l.type === Pathfinder2eSharedConstants.ClassTypes.CLASS), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
