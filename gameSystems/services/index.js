@@ -25,7 +25,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !id)
 			return '';
 
-		const results = store.getters.getBoon(id);
+		const results = store.getters.getBoon(correlationId, id);
 		return results ? results.description : '';
 	}
 
@@ -41,7 +41,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !id)
 			return '';
 
-		const results = store.getters.getBoon(id);
+		const results = store.getters.getBoon(correlationId, id);
 		return results ? results.name : '';
 	}
 
@@ -58,7 +58,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !id)
 			return '';
 
-		const results = store.getters.getBoon(id);
+		const results = store.getters.getBoon(correlationId, id);
 		return results ? results.uses : null;
 	}
 
@@ -82,7 +82,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!id || !store)
 			return '';
 
-		const results = store.getters.getScenario(id);
+		const results = store.getters.getScenario(correlationId, id);
 		return this.scenarioDescription(correlationId, results, value);
 	}
 
@@ -97,7 +97,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!id || !store)
 			return '';
 
-		const results = store.getters.getScenario(id);
+		const results = store.getters.getScenario(correlationId, id);
 		return this.scenarioName(correlationId, results);
 	}
 
@@ -113,7 +113,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !id)
 			return '';
 
-		const results = store.getters.getFaction(id);
+		const results = store.getters.getFaction(correlationId, id);
 		return results ? results.description : '';
 	}
 
@@ -129,7 +129,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !id)
 			return '';
 
-		const results = store.getters.getFaction(id);
+		const results = store.getters.getFaction(correlationId, id);
 		return results ? results.name : '';
 	}
 
@@ -162,7 +162,9 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 
 	// eslint-disable-next-line
 	lookupName(correlationId, id, lookups) {
-		if (!id)
+		// `lookups` (e.g. lookups.characterStatus) can be undefined on the first render, before the
+		// component's onMounted populates the lookups object; guard so the template doesn't throw.
+		if (!id || !lookups)
 			return '';
 
 		const results = lookups.find(l => l.id == id);
@@ -229,10 +231,10 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 
 	// eslint-disable-next-line
 	_boons(correlationId, store, hasBlank, gameSystemId) {
-		if (!store || !gameSystemId || !store.state.boons.listing)
+		if (!store || !gameSystemId || !store.boons.listing)
 			return [];
 
-		const results = LibraryUtility.sortByName(store.state.boons.listing.filter(l => l.gameSystemId === gameSystemId), true);
+		const results = LibraryUtility.sortByName(store.boons.listing.filter(l => l.gameSystemId === gameSystemId), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
 
@@ -241,10 +243,10 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 
 	// eslint-disable-next-line
 	_factions(correlationId, store, hasBlank, gameSystemId) {
-		if (!store || !gameSystemId || !store.state.factions.listing)
+		if (!store || !gameSystemId || !store.factions.listing)
 			return [];
 
-		const results = LibraryUtility.sortByName(store.state.factions.listing.filter(l => l.gameSystemId === gameSystemId), true);
+		const results = LibraryUtility.sortByName(store.factions.listing.filter(l => l.gameSystemId === gameSystemId), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
 
@@ -304,7 +306,7 @@ class SharedGameSystemGamesSystemsService extends BaseGameSystemGamesSystemsServ
 		if (!store || !gameSystemId)
 			return [];
 
-		const results = store.state.scenarios.listing.filter(l => l.gameSystemId == gameSystemId);
+		const results = store.scenarios.listing.filter(l => l.gameSystemId == gameSystemId);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
 

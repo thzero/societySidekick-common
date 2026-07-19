@@ -65,10 +65,10 @@ class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSys
 
 	// eslint-disable-next-line
 	classes(correlationId, store, hasBlank) {
-		if (!store || !store.state.classes.listing)
+		if (!store || !store.classes.listing)
 			return [];
 
-		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Starfinder1e.id);
+		let results = store.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Starfinder1e.id);
 		results = LibraryUtility.sortByName(results.filter(l => l.type === Starfinder1eSharedConstants.ClassTypes.CLASS), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
@@ -147,10 +147,10 @@ class Starfinder1eGameSystemGamesSystemsService extends SharedGameSystemGamesSys
 
 	// eslint-disable-next-lin
 	themes(correlationId, store, hasBlank) {
-		if (!store || !store.state.classes.listing)
+		if (!store || !store.classes.listing)
 			return [];
 
-		let results = store.state.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Starfinder1e.id);
+		let results = store.classes.listing.filter(l => l.gameSystemId === SharedConstants.GameSystems.Starfinder1e.id);
 		results = LibraryUtility.sortByName(results.filter(l => l.type === Starfinder1eSharedConstants.ClassTypes.THEME), true);
 		if (hasBlank)
 			return LibraryUtility.selectBlank(results);
