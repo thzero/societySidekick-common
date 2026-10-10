@@ -108,6 +108,10 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 	// eslint-disable-next-line
 	calculateCharacterScenarioInitial(correlationId, item) {
+		// the starting scenario the character gets in init(); a saved scenario
+		// keeps only its scenarioId, the scenario itself is attached in the dialog
+		if (item.scenarioId === Starfinder1eSharedConstants.ScenarionInitialId)
+			return true;
 		return ((item.scenario ? item.scenario.type : null) === Starfinder1eSharedConstants.ScenarioAdventures.INITIAL);
 	}
 
@@ -125,6 +129,16 @@ class Starfinder1eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 	// eslint-disable-next-line
 	calculateScenario(correlationId, scenario) {
+	}
+
+	// Starfinder reputation is earned with the fame, so a scenario earns as much
+	// of it as it does fame (calculateCharacterScenarioAdditional totals it so).
+	// eslint-disable-next-line
+	calculateScenarioReputationEarned(correlationId, scenario) {
+		if (!scenario)
+			return 0;
+
+		return this.cleanDecimal(this.clean(scenario.fameEarned));
 	}
 
 	// eslint-disable-next-line
