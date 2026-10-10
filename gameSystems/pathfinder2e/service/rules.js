@@ -124,7 +124,11 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 	// eslint-disable-next-line
 	calculateCharacterScenarioInitial(correlationId, item) {
-		return (item.scenarioAdventure === Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
+		// the starting scenario the character gets in init(); a saved scenario
+		// keeps only its scenarioId, the scenario itself is attached in the dialog
+		if (item.scenarioId === Pathfinder2eSharedConstants.ScenarionInitialId)
+			return true;
+		return ((item.scenario ? item.scenario.type : null) === Pathfinder2eSharedConstants.ScenarioAdventures.INITIAL);
 	}
 
 	// eslint-disable-next-line
