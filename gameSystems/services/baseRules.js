@@ -90,9 +90,10 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 					if (inventoryItem.id === equipmentId)
 						continue;
 
-					const currencySold = this._initDecimal(this.calculateItemTotal(correlationId, inventoryItem.quantity, inventoryItem.value)) * 0.5;
-					item.currencyGained = item.currencyGained.plus(item.currencySold);
-					item.currencySold = item.currencySold.plus(inventoryItem.total);
+					// Sold inventory returns half its value.
+					const currencySold = this._initDecimal(this.calculateItemTotal(correlationId, inventoryItem.quantity, inventoryItem.value)).times(0.5);
+					item.currencyGained = item.currencyGained.plus(currencySold);
+					item.currencySold = item.currencySold.plus(currencySold);
 					item.currencyTotal = item.currencyTotal.plus(currencySold);
 					character.currencyTotal = character.currencyTotal.plus(currencySold);
 					character.currencySold = character.currencySold.plus(currencySold);
@@ -195,7 +196,7 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 		if (!quantity || !value)
 			return 0;
 
-		return this._initDecimal(quantity) * value;
+		return this._initDecimal(quantity).times(value).toNumber();
 	}
 
 	calculateItemTotalFixed(correlationId, quantity, value) {
@@ -214,6 +215,32 @@ class BaseRulesGamesSystemService extends BaseGameSystemsService {
 	// eslint-disable-next-line
 	calculateScenarioExperiencePointsEarned(correlationId, scenario) {
 		throw new NotImplementedError();
+	}
+
+	// The level the character reaches with the scenario: the experience points of
+	// the scenarios played before it, counted as calculateCharacter counts them,
+	// plus its own.
+	calculateScenarioLevel(correlationId, character, scenario) {
+		if (!character || !scenario)
+			return null;
+
+		const totals = { experiencePoints: this._initDecimal(0) };
+		const scenarios = Utility.sortByOrder([ ...(character.scenarios ?? []) ], true);
+		for (const item of scenarios) {
+			if (Number(item.order) >= Number(scenario.order))
+				break;
+			if (item.id === scenario.id)
+				continue;
+			if (!this.calculateCharacterScenarioIgnore(correlationId, item))
+				continue;
+			if (item.status !== SharedConstants.CharactersStatus.ACTIVE)
+				continue;
+
+			totals.experiencePoints = this.calculateCharacterScenarioExperiencePoints(correlationId, totals, item);
+		}
+		totals.experiencePoints = this.calculateCharacterScenarioExperiencePoints(correlationId, totals, scenario);
+
+		return this.calculateLevel(correlationId, this._toFixed(totals.experiencePoints, 1));
 	}
 
 	clean(value) {
