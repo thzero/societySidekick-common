@@ -2,6 +2,7 @@ export default {
 	options: {
 		admin: { // Role name
 			can: [ // list of allowed operations
+				'admin',
 				'boons',
 				'boons:create',
 				'boons:edit',
