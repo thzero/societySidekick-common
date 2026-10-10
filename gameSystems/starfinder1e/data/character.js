@@ -33,7 +33,7 @@ class Starfinder1eCharacterData extends CharacterData {
 		scenario.fameEarned = 0;
 		scenario.scenarioAdvancementSpeed = Starfinder1eSharedConstants.ScenarioAdvancementSpeeds.INITIAL;
 		scenario.scenarioId = Starfinder1eSharedConstants.ScenarionInitialId;
-		scenario.gameSystemId = SharedConstants.GameSystems.Pathfinder2e.id;
+		scenario.gameSystemId = SharedConstants.GameSystems.Starfinder1e.id;
 
 		this.scenarios.push(scenario);
 	}

@@ -32,9 +32,14 @@ class Pathfinder2eRulesGamesSystemsService extends BaseRulesGamesSystemsService 
 
 		if (user) {
 			const gameSystemId = SharedConstants.GameSystems.Pathfinder2e.id;
+			// The total is kept on the user's settings for the game system, so a
+			// user without one yet gets one rather than losing the total.
+			user.settings.gameSystems ??= [];
 			let settingsGameSystem = user.settings.gameSystems.find(l => l.id === gameSystemId);
-			if (!settingsGameSystem)
+			if (!settingsGameSystem) {
 				settingsGameSystem = new SettingsGameSystem(gameSystemId);
+				user.settings.gameSystems.push(settingsGameSystem);
+			}
 
 			let achievementPoints = this._initDecimal(character.achievementPoints);
 			const response = await this._serviceCharacters.listing(null, user, gameSystemId);
